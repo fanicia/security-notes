@@ -4,7 +4,7 @@
 RDP to connect to jumphost: `xfreerdp /u:${DOMAIN}\\${user} /p:${password} /cert:ignore /v:$RHOST`
 
 
-## Windows commands
+## Enumeration
 
 ### Initial setup
 
@@ -47,3 +47,5 @@ A good flag to use is `-Properties` with these, which takes a comma-separated li
 
 [Bloodhound](https://github.com/BloodHoundAD/BloodHound) with Sharphound can also be used for a graph overview of the domain.
 It has the drawback of being quite noisy though.
+
+
