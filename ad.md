@@ -43,6 +43,10 @@ Similar to the `net` tool, powershell has cmdlets like `GetADUser`, `Get-ADGroup
 A good flag to use is `-Properties` with these, which takes a comma-separated list, or wildcards `*`
 
 
+### Enum and much else: PowerSploit
+[link here](https://docs.microsoft.com/en-us/powershell/module/activedirectory/?view=windowsserver2022-ps)
+
+
 ### Bloodhound
 
 [Bloodhound](https://github.com/BloodHoundAD/BloodHound) with Sharphound can also be used for a graph overview of the domain.
