@@ -8,7 +8,7 @@ install impacket with:
 this will create a virtualenv in `/home/${local_user}/.local/share/virtualenvs/${VENV_NAME}`
 you can then:
 ```
-export IMPACKET_SCRIPTS=/home/${local_user}/.local/share/virtualenvs/${VENV_NAME}/bin
+export IMPACKET_SCRIPTS=$(pipenv --venv)/bin
 ```
 Now, you can run impacket scripts with:
 ```
