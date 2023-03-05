@@ -4,7 +4,7 @@ Discoverability of scripting languages like Powershell or shell is poor by desig
 These notes are for the weary shell-user who finds themselves stuck in a powershell (possibly on a remote machine).
 Powershell cmdlets follow the naming pattern of `Verb-Noun`.
 
-## Useful commands
+## Useful meta commands
 
 Cmdlet for listing other available cmdlets:
 ```
@@ -20,3 +20,14 @@ Get-Help ${cmdlet}
 ```
 
 Now a man-page like output should help discovering how to use it.
+
+## Useful commands cmdlets
+
+searching, similar to `find`:
+```
+Get-ChildItem -Recurse -Filter "filename*"
+```
+
+You can `cat` with:
+
+`Get-Content -Path $file`
