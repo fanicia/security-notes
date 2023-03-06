@@ -38,3 +38,14 @@ Base64 decode:
 ```
 [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($exampleVar))
 ```
+
+Open ports:
+
+```
+Get-NetTCPConnection
+```
+
+Search for only listening ports:
+```
+Get-NetTCPConnection | Where-Object -Property State -EQ Listen
+```
