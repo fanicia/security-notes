@@ -31,3 +31,10 @@ Get-ChildItem -Recurse -Filter "filename*"
 You can `cat` with:
 
 `Get-Content -Path $file`
+
+
+Base64 decode:
+
+```
+[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($exampleVar))
+```
