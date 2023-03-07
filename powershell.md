@@ -49,3 +49,9 @@ Search for only listening ports:
 ```
 Get-NetTCPConnection | Where-Object -Property State -EQ Listen
 ```
+
+Search for file containing a specific text:
+
+```
+Get-ChildItem -Recurse -Path "C:\" | Select-String "${someVar}" -List | Select Path
+```
