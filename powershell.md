@@ -55,3 +55,19 @@ Search for file containing a specific text:
 ```
 Get-ChildItem -Recurse -Path "C:\" | Select-String "${someVar}" -List | Select Path
 ```
+
+We can use the following trick to exclude paths we don't care about:
+```
+Get-ChildItem -Recurse -Path "C:\" | Select-String "${someVar}" -List | Select Path | Where-Object { $_ -notmatch ".Net" -and $_ -notmatch "Windows" }
+```
+
+
+If you have a search you know will output the file you want, you can pipe it into `Select-Object`:
+
+```
+Get-ChildItem -Path "C:\" -Recurse -Filter "*filter*" | Select-Object -First 1 | Get-Content
+```
+
+This will cat the contents of the first file the `Get-ChildItem` cmdlet outputs.
+
+
