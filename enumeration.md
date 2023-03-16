@@ -8,4 +8,4 @@ Useful early enumeration commands:
 * `smbmap -H ${RHOST}`
 
 example of recursive smbget: 
-`smbget -R smb://10.10.86.167:445/${directory} -U ${user}`
+`smbget -R smb://${RHOST}:${PORT}/${DIRECTORY} -U ${USER}`
