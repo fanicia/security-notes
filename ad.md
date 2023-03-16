@@ -52,8 +52,8 @@ A good flag to use is `-Properties` with these, which takes a comma-separated li
 
 
 ### Enum and much else: PowerSploit
-[link here](https://docs.microsoft.com/en-us/powershell/module/activedirectory/?view=windowsserver2022-ps)
 
+[PowerUp](https://github.com/PowerShellEmpire/PowerTools/blob/master/PowerUp/PowerUp.ps1)
 
 ### Bloodhound
 
