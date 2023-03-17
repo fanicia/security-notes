@@ -9,3 +9,6 @@ Useful early enumeration commands:
 
 example of recursive smbget: 
 `smbget -R smb://${RHOST}:${PORT}/${DIRECTORY} -U ${USER}`
+
+Most basic gobuster command:
+`gobuster dir -u  $RHOST -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt`
