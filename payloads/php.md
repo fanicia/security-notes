@@ -1,4 +1,4 @@
-# PHP
+# PHP Reverse shell
 
 [source](https://github.com/ivan-sincek/php-reverse-shell/blob/master/src/reverse/php_reverse_shell.php)
 ```php
