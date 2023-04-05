@@ -85,3 +85,10 @@ start powershell -credential ""
 
 Note you need to kill the parent shell for this to work.
 There are probably smarter ways.
+
+## Enumerating open ports with Powershell
+
+(Also referenced in [enumeration.md](./../enumeration.md)
+```
+1..1024 | % {echo ((New-Object Net.Sockets.TcpClient).Connect("$RHOST", $_)) " $_/tcp open"} 2>$null
+```

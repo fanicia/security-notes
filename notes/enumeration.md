@@ -41,6 +41,12 @@ if you need it to look for words in a pattern, eg `{word}/v1` and `{word}/v2`, y
 ```
 to a patterns.txt file and then add the flag `-p patterns.txt` to the gobuster command.
 
+## Powershell
+```
+1..1024 | % {echo ((New-Object Net.Sockets.TcpClient).Connect("192.168.50.151", $_)) "TCP port $_ is open"} 2>$null
+```
+
+
 ## GHDB for google dorking
 
 [GHDB](https://www.exploit-db.com/google-hacking-database)
