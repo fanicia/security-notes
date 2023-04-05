@@ -18,6 +18,11 @@ nmap -sS -iL ip-range.txt -oN nmap-out.txt
 ```
 where ip-range.txt is a file with the ips separated by line breaks.
 
+To search for nmap scripts for SMB, do something like `ls -1 /usr/share/nmap/scripts/smb*`.
+
+
+
+
 
 ## Random commands
 
@@ -27,8 +32,11 @@ Useful early enumeration commands:
 * `nikto -host ${RHOST}`
 * `smbmap -H ${RHOST}`
 
+If you want `smbmap` with a host-file, do `--host-file hosts.txt`
+
 example of recursive smbget:
 `smbget -R smb://${RHOST}:${PORT}/${DIRECTORY} -U ${USER}`
+
 
 Most basic gobuster command:
 `gobuster dir -u  $RHOST -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt`
@@ -43,7 +51,7 @@ to a patterns.txt file and then add the flag `-p patterns.txt` to the gobuster c
 
 ## Powershell
 ```
-1..1024 | % {echo ((New-Object Net.Sockets.TcpClient).Connect("192.168.50.151", $_)) "TCP port $_ is open"} 2>$null
+1..1024 | % {echo ((New-Object Net.Sockets.TcpClient).Connect("$RHOST", $_)) " $_/tcp open"} 2>$null
 ```
 
 

@@ -36,6 +36,13 @@ or the password policy for the domain: `net accounts /domain`
 
 Has to be done from a domain-joined machine though, and it does not necessarily show the full output.
 
+
+Enumerating SMB shares from the DC can be done with:
+
+```
+net view \\dc01 /all
+```
+
 ### Enum in Powershell
 
 AD-RSAT tooling gives us a lot of options.
