@@ -3,8 +3,10 @@
 import socket
 import sys
 
+# Or, just run `nc -nv $RHOST 25` followed by `VRFY $username`
+
 if len(sys.argv) != 3:
-        print("Usage: smtpenum.py <username> <target_ip>")
+        print("Usage: smtpenum.py $username $RHOST")
         sys.exit(0)
 
 # Create a Socket
