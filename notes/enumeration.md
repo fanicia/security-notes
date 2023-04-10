@@ -72,5 +72,7 @@ There's also `filetype:` which you can use to search for things like txt files w
 `dnsrecon` and `dnsenum` for enumerating a specific domain
 
 
+## cURL
 
+When curling, you can use --path-as-is to keep any `/../` in the URLs.
 
