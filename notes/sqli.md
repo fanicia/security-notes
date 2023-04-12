@@ -1,6 +1,8 @@
 # SQL Injection
 
-a good starting point:
+When logging into an application, you might see errors from the underlying databases.
+This can be a sign of potential for SQL injection.
+A good starting point to check for that would be:
 
 ```
 admin' OR 1=1 -- //
