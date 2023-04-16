@@ -1,5 +1,11 @@
 # SQL Injection
 
+On Kali, to connect to an MSSQL database on a Windows machine, do:
+
+```
+impacket-mssqlclient ${USER}:${PW}@${RHOST} -windows-auth
+```
+
 ## Error based
 
 When logging into an application, you might see errors from the underlying databases.
