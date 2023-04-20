@@ -2,6 +2,7 @@
 
 
 RDP to connect to jumphost: `xfreerdp /u:${DOMAIN}\\${user} /p:${password} /cert:ignore /v:$RHOST`
+In order to add a shared drive with `xfreedrp`, use `/drive:tmp,/tmp`.
 
 
 ## Enumeration
