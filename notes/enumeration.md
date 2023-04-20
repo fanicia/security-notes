@@ -20,6 +20,11 @@ where ip-range.txt is a file with the ips separated by line breaks.
 
 To search for nmap scripts for SMB, do something like `ls -1 /usr/share/nmap/scripts/smb*`.
 
+Or do something like `grep $keyword /usr/share/nmap/scripts/*.nse`.
+Keywords here can be eg. `enumerate, fuzz, brute force, detect or exploit`.
+
+To get help with a script, use `nmap --script-help=${SCRIPT}`
+
 
 
 
