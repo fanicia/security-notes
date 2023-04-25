@@ -26,3 +26,13 @@ Afterwards, stabilize with [this](https://brain2life.hashnode.dev/how-to-stabili
 ## Revshells
 
 [revshells.com](https://www.revshells.com/)
+
+## Cross-compiling C on kali to windows
+
+mingw-w64 is used to cross compile c files to windows exe files.
+This can look something like:
+
+`i686-w64-mingw32-gcc some-c-file.c -o out-file.exe -l ws2_32`
+
+Where `-l ws2_32` tells `mingw32-gcc` to include the `ws2_32` DLL in the final executable with static linking. 
+
