@@ -11,6 +11,11 @@ if rules are placed on individual lines, they result in multiple versions of the
 check your rules by running `hashcat -r smthing.rules --stdout wordlist.txt`.
 
 
+Note that there's a specific ruleset made for rockyou.txt at:
+```
+/usr/share/hashcat/rules/rockyou-30000.rule
+```
+
 ## Hash identifiers
 
 you can use `hashid` or `hash-identifier` to identify a hash.
@@ -42,6 +47,5 @@ Copy the full hashline (everything, including username) into a file with `echo -
 ```
 hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt 
 ```
-
 
 

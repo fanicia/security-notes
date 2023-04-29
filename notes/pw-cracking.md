@@ -95,3 +95,14 @@ Passw0rd123      (thm.red\bk-admin)    <------------ Output here
 1g 0:00:00:00 DONE (2023-03-04 14:00) 10.00g/s 21033Kp/s 21033Kc/s 21033KC/s Password31..Paris13
 Use the "--show --format=NT" options to display all of the cracked passwords reliably
 ```
+
+##  keepass2john
+
+We can extract hash for the master password from a .kdbx file with:
+
+`keepass2john Database.kdbx > result.hash`
+
+The resulting hash has a prefix `Database:` that should be removed.
+Afterwards, we can attempt to crack it with `hashcat -m 13400`
+
+
