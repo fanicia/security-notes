@@ -1,5 +1,21 @@
 # Hashcat commands
 
+## Hashcat rules
+
+you can define `.rule` files which will alter the wordlists you give hashcat.
+This way, we can e.g. capitalize all the first letter of the word or adding a `1` to the end of a word with $.
+
+the rule `c ^1` will  capitalize the first letter of the word and place a `1` in the front.
+if rules are placed on individual lines, they result in multiple versions of the word.
+
+check your rules by running `hashcat -r smthing.rules --stdout wordlist.txt`.
+
+
+## Hash identifiers
+
+you can use `hashid` or `hash-identifier` to identify a hash.
+online, there's also [hash.com](https://hashes.com/en/tools/hash_identifier)
+
 ## NTLM
 
 For NTLM hash cracks you will have something like this:
