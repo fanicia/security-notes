@@ -96,13 +96,21 @@ Passw0rd123      (thm.red\bk-admin)    <------------ Output here
 Use the "--show --format=NT" options to display all of the cracked passwords reliably
 ```
 
-##  keepass2john
+## Extracting hashes from interesting files 
 
 We can extract hash for the master password from a .kdbx file with:
 
-`keepass2john Database.kdbx > result.hash`
+```
+keepass2john Database.kdbx > result.hash
+```
 
 The resulting hash has a prefix `Database:` that should be removed.
 Afterwards, we can attempt to crack it with `hashcat -m 13400`
+
+similarly, if we gain access to an ssh private-key, we have
+```
+ssh2john id_rsa
+```
+Which, again, will prefix with the filename `id_rsa:` which should be removed before giving it to hashcat.
 
 
