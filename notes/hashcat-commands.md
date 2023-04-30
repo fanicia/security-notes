@@ -48,4 +48,6 @@ Copy the full hashline (everything, including username) into a file with `echo -
 hashcat -m 5600 hash.txt /usr/share/wordlists/rockyou.txt 
 ```
 
+## Searching for the mode
 
+It can be beneficial to look for the hash mode with hashcat, something like `hashcat -h | grep -i "ssh"`.
