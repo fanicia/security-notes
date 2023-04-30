@@ -113,4 +113,4 @@ ssh2john id_rsa
 ```
 Which, again, will prefix with the filename `id_rsa:` which should be removed before giving it to hashcat.
 
-We can 
+
