@@ -39,7 +39,7 @@ Remeber that you can ignore errors with `-ErrorAction SilentlyContinue` for all 
 If we want all files of a specific filetype, we can do:
 
 ```
-Get-ChildItem -Include *.txt *.kdbx -File -Recurse -ErrorAction SilentlyContinue`
+Get-ChildItem -Include *.txt,*.kdbx,*.pdf,*.xls,*.xlsx,*.doc,*.docx -File -Recurse -ErrorAction SilentlyContinue
 ```
 
 You can `cat` with:
