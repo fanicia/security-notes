@@ -101,3 +101,9 @@ There are probably smarter ways.
 ```
 1..1024 | % {echo ((New-Object Net.Sockets.TcpClient).Connect("$RHOST", $_)) " $_/tcp open"} 2>$null
 ```
+
+
+## Example of pipes with Where-Object and ForEach-Object
+```
+Get-LocalGroupMember Users | Where-Object {$_.ObjectClass -Eq "User"} | ForEach-Object -Process {Get-LocalUser $_.Name.split('\')[1]}
+```
