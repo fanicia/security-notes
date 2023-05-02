@@ -34,10 +34,19 @@ searching, similar to `find`:
 ```
 Get-ChildItem -Recurse -Filter "filename*"
 ```
+Remeber that you can ignore errors with `-ErrorAction SilentlyContinue` for all these commands.
+
+If we want all files of a specific filetype, we can do:
+
+```
+Get-ChildItem -Include *.txt *.kdbx -File -Recurse -ErrorAction SilentlyContinue`
+```
 
 You can `cat` with:
 
-`Get-Content -Path $file`
+```
+Get-Content -Path $file
+```
 
 
 Base64 decode:
