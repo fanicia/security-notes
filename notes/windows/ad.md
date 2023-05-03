@@ -4,6 +4,13 @@
 RDP to connect to jumphost: `xfreerdp /u:${DOMAIN}\\${user} /p:${password} /cert:ignore /v:$RHOST`
 In order to add a shared drive with `xfreedrp`, use `/drive:tmp,/tmp`.
 
+## evil-winrm
+
+Connect to windows host via WinRM with (from kali)
+```
+evil-winrm -i ${RHOST} -u ${USER} -p ${PW}
+```
+special characters might need to be escaped from the password.
 
 ## Enumeration
 

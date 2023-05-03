@@ -61,6 +61,14 @@ Finally, to get running processes:
 ```
 Get-Process
 ```
+## History
+
+Powershell history: `Get-History`
+
+To get history from PSReadline:
+```
+(Get-PSReadlineOption).HistorySavePath
+```
 
 ## Enum and much else: PowerSploit
 
