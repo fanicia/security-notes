@@ -69,3 +69,25 @@ This of course requires us to have write-access to part of the unquoted path, an
 
 ## Scheduled Tasks
 
+
+To use tasks we need to consider:
+* Who executes the task?
+* What triggers the task?
+* What happens it triggers?
+
+Cmdlet for querying tasks:
+
+```
+schtasks /query /fo LIST /v
+
+```
+Information to look at is TaskName, Next Run Time, Author, Task to Run and Run As User.
+
+
+
+As the output can be quite long, consider doing something like:
+
+```
+schtasks /query /fo LIST /v > tasks.txt
+```
+And then transfering the list to the attack box
