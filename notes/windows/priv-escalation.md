@@ -91,3 +91,24 @@ As the output can be quite long, consider doing something like:
 schtasks /query /fo LIST /v > tasks.txt
 ```
 And then transfering the list to the attack box
+
+
+## Misc Exploits
+
+When looking at privilege escalation, the privilege `SeImpersonatePrivilege` can be interesting, as it allows users to run commands as another user.
+By default, this privilege is given to the accounts:
+
+* local Administrators
+* LOCAL SERVICE
+* NETWORK SERVICE
+* SERVICE
+
+If we have exploited IIS, it is not uncommon to have a shell running as
+
+* LocalService
+* LocalSystem
+* NetworkService
+* ApplicationPoolIdentity
+
+Which all have SeImpersonatePrivilege.
+
