@@ -13,7 +13,7 @@
 
 If the shell complains that scripts are turned off, do `powershell -ep bypass` to allow the script to be run.
 
-Get it onto the target machine, do `Import-Module .\PowerUp.ps1`, followed by `. .\PowerUp.ps1`.
+Get it onto the target machine, do `Import-Module .\PowerUp.ps1`.
 Now, we can run the functions defined in the script, such as `Get-ModifiableServiceFile`
 
 ## Windows services

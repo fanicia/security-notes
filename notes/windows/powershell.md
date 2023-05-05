@@ -93,9 +93,15 @@ This will cat the contents of the first file the `Get-ChildItem` cmdlet outputs.
 
 ## Open powershell terminal with other credentials:
 
+With admin privileges:
 ```
-start powershell -credential ""
+Start-Process "powershell" -Credential "Administrat0r" -ArgumentList "Start-Process powershell -Verb runAs" -WorkingDirectory 'C:\Users'
 ```
+Without admin privileges:
+```
+Start-Process "powershell" -Credential "Administrat0r" -ArgumentList "Start-Process powershell" -WorkingDirectory 'C:\Users'
+```
+
 
 Note you need to kill the parent shell for this to work.
 There are probably smarter ways.
