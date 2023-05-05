@@ -21,6 +21,11 @@ Get-Help ${cmdlet}
 
 Now a man-page like output should help discovering how to use it.
 
+Get `$Path`:
+```
+$env:path
+```
+
 
 ## Downloading a file from a URI
 
@@ -105,6 +110,7 @@ Start-Process "powershell" -Credential "Administrat0r" -ArgumentList "Start-Proc
 
 Note you need to kill the parent shell for this to work.
 There are probably smarter ways.
+
 
 ## Enumerating open ports with Powershell
 
