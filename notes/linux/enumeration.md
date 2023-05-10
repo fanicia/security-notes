@@ -32,11 +32,17 @@ Neat trick for gaining an overview of cronjobs:
 ```
 ls -lah  /etc/cron*
 ```
-to look for cron jobs scheduled as root:
+to look for cron jobs scheduled with sudo privileges of current user: 
 
 ```
 sudo crontab -l
 ```
+Also remember to check:
+
+```
+cat /etc/crontab
+```
+
 Dirs we can write to:
 
 ```
@@ -53,6 +59,21 @@ Files with the SUID bit:
 ```
 find / -perm -u=s -type f 2>/dev/null
 ```
+
+We can check for processes run with passwords in plaintext like so:
+
+```
+watch -n 1 "ps -aux | grep pass"
+```
+
+And similarly, we can look for passwords in the tcpdump (requires sudo permissions):
+
+```
+sudo tcpdump -i lo -A | grep "pass"
+```
+
+`-i` chooses network interface, and `-A` prints packets in ASCII.
+
 
 ## Automated techniques
 
