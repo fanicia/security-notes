@@ -1,5 +1,20 @@
 # Linux Enumeration
 
+## Enumerating the users
+
+full user list can be seen in `/etc/passwd`.
+
+cron jobs for the current user can be seen with:
+```
+crontab -l
+```
+Check sudo capabilities for the current user with:
+```
+sudo -l
+```
+
+
+
 ## Enumerating the system
 
 For displaying the route table (depending on distro):
