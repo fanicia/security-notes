@@ -17,6 +17,12 @@ sudo -l
 
 ## Enumerating the system
 
+For info on the system:
+
+```
+cat /etc/issue, cat /etc/*-release, uname -r, arch 
+```
+
 For displaying the route table (depending on distro):
 ```
 route / routel 
