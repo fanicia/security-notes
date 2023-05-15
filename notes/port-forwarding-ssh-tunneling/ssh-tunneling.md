@@ -2,9 +2,37 @@
 
 ## Local Port Forward
 
-Local SSH tunnel from `$OWNED_IP` to some `EXTERNAL_IP` (run this from kali).
+Local SSH tunnel from `$OWNED_IP1` to some `EXTERNAL_IP` (run this from `${OWNED_IP0}`).
 ```
-ssh -N -L 0.0.0.0:${OWNED_PORT}:${EXTERNAL_IP}:${EXTERNAL_PORT} ${USER}@${OWNED_IP}
+ssh -N -L 0.0.0.0:${OWNED_PORT0}:${EXTERNAL_IP}:${EXTERNAL_PORT} ${USER}@${OWNED_IP1}
 ```
 This will allow traffic to go `${ATTACKER_IP} <--> ${OWNED_IP}:${OWNED_PORT} <--> ${EXTERNAL_IP}:${EXTERNAL_PORT}` 
+
+## Dynamic Port Forward
+
+If we want to be able to port-scan or otherwise interact with multiple ports of targets not directly reachable from our network,
+we can use `proxychains4` with OpenSSH's dynamic port forward option.
+
+With the following, OpenSSH opens a SOCKS proxy server:
+
+```
+ssh -N -D 0.0.0.0:${OWNED_PORT0} ${USER}@${OWNED_IP1}
+```
+
+To make sure packages are sent in a compatible manner, we use `proxychains4`.
+the default config is found in `/etc/proxychains4.conf`, but we can also specify a config file with `-f $pathToConfig`.
+
+a config could be to add to a `proxychains4.conf`:
+
+```
+socks4 	${OWNED_IP0} ${OWNED_PORT0} 
+```
+
+Now, we can do eg. a call with smbclient like so:
+
+```
+proxychains4 -f proxychains4.conf smbclient ...
+```
+The trick is to use whatever tool you are calling with the same parameters you would otherwise with regards to IPs and ports, and just let proxychains handle the proxying.
+
 
