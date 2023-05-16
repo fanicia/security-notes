@@ -1,5 +1,8 @@
 # SSH Tunneling
 
+With all of these, it can be good just to verify that the machine is listening on a given port after the tunnel is created.
+This can be done with `ss -ntplu`
+
 ## Local Port Forwarding
 
 Local SSH tunnel from `$OWNED_IP1` to some `EXTERNAL_IP` (run this from `${OWNED_IP0}`).
