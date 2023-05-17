@@ -58,6 +58,8 @@ Now, we can interact with `${EXTERNAL_IP}:${EXTERNAL_PORT}` via `127.0.0.1:${OWN
 sudo systemctl start ssh
 ```
 
+Also, note that the OpenSSH client needs to be version 7.6 (from 2017) or above for this to work.
+
 From `${OWNED_IP}`, we can also do remote dynamic port forwarding with:
 
 ```
@@ -70,4 +72,37 @@ socks4 127.0.0.1 ${PROXYCHAINS_PORT}
 ```
 
 Now, we can again interact with targets reachable from `${OWNED_IP}` from `${ATTACKER_IP}` by prefixing with `proxychains4` and then setting whatever IP/Port we want to hit. 
+
+
+## Utility tools
+
+### sshuttle
+
+sshuttle sets up a VPN-like connection between your machine and machines that are not directly reachable.
+
+Get the subnets you want to tunnel through, and do:
+
+socat port forward to the ssh server in `OWNED_IP1` and `OWNED_PORT1`:
+
+```
+socat -ddd TCP-LISTEN:${LISTENING_PORT0},fork TCP:${OWNED_IP1}:${OWNED_PORT1`}
+```
+
+Now, you get the subnets you want to tunnel through (these will be the subnets in `ip route` on `{OWNED_IP1}`) and do:
+
+```
+sshuttle -r ${USER}@${OWNED_IP0}:${OWNED_PORT0} ${SUBNET_IP1_1} ${SUBNET_IP1_2}
+```
+Once we authorize with local sudo and the pw of `$USER`,  we can now "directly" interact with hosts in `$SUBNET_IP1_2`, which were unreachable before.
+
+
+### ligolo-ng
+
+Consider looking into this tool.
+
+
+
+
+### Ligolo-ng
+
 
