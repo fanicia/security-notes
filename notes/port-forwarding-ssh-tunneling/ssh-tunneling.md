@@ -71,7 +71,7 @@ For this to work with `proxychains4`, we have to add the following to our config
 socks4 127.0.0.1 ${PROXYCHAINS_PORT}
 ```
 
-Now, we can again interact with targets reachable from `${OWNED_IP}` from `${ATTACKER_IP}` by prefixing with `proxychains4` and then setting whatever IP/Port we want to hit. 
+Now, we can again interact with targets reachable from `${OWNED_IP}` from `${ATTACKER_IP}` by prefixing with `proxychains4` and then setting the IP/port of `${REMOTE_HOST}` we want to hit. 
 
 
 ## Utility tools
