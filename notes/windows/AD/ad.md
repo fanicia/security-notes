@@ -3,6 +3,8 @@
 
 RDP to connect to jumphost: `xfreerdp /u:${DOMAIN}\\${user} /p:${password} /cert:ignore /v:$RHOST`
 In order to add a shared drive with `xfreedrp`, use `/drive:tmp,/tmp`.
+Note that the shared drive can now be accessed programmatically by using the path `\\tsclient\tmp` on the Windows host.
+
 
 ## evil-winrm
 

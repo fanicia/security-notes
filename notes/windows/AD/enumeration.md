@@ -31,12 +31,24 @@ net view \\dc01 /all
 
 ### Manual Powershell enum
 
+See [AD-Querier.ps1](./../../../payloads-n-scripts/scripts/AD-Querier.ps1).
+When this script is imported, it can be used to make queries of the form:
+
 ```powershell
-$PDC = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().PdcRoleOwner.Name
-$DN = ([adsi]'').distinguishedName 
-$LDAP = "LDAP://$PDC/$DN"
-$LDAP
+$user = LDAPSearch -Query "(&(objectCategory=user)(cn=*${USER_NAME}*))"
 ```
+or
+```powershell
+$group = LDAPSearch -Query "(&(objectCategory=group)(cn=*${GROUP_NAME}*))"
+```
+```powershell
+$group = LDAPSearch -Query "(objectCategory=computers)"
+```
+
+````powershell
+$group = LDAPSearch -Query "(distinguishedname=${DISTINGUISHED_NAME_OF_OBJECT})"
+`````
+
 ### Automation tools
 
 #### RSAT (Requires local admin)
@@ -57,7 +69,13 @@ A good flag to use is `-Properties` with these, which takes a comma-separated li
 #### Enum and much else: PowerSploit
 
 [PowerView](https://github.com/PowerShellEmpire/PowerTools/blob/master/PowerView/powerview.ps1)
-[PowerUp](https://github.com/PowerShellEmpire/PowerTools/blob/master/PowerUp/PowerUp.ps1)
+
+Examples of commands:
+
+* `Get-NetUser ${USER_NAME}`
+* `Get-NetGroup ${GROUP}`
+* `Get-NetComputer`
+
 
 ## Bloodhound
 
