@@ -75,6 +75,16 @@ Examples of commands:
 * `Get-NetUser ${USER_NAME}`
 * `Get-NetGroup ${GROUP}`
 * `Get-NetComputer`
+* `Find-LocalAdminAccess` (Finds computers in the domain in which current user is local admin).
+* `Get-NetSession -ComputerName ${COMPUTER_NAME} -Verbose` (`-Verbose` to let us know if we simply don't have privileges to make the call).
+
+TL;DR regarding finding active sessions for users: `Get-NetSession` will not work by default on Windows 11.
+If that is the case, it may be worth trying the `PSLoggedOn`-tool for this purpose:
+```
+PSLoggedOn.exe \\${COMPUTER_NAME}
+```
+Just keep in mind that a blank output here can also just mean that the pre-reqs for the tool are simply not met, as it uses Remote Registry,
+which has been turned off by default since Windows 8.
 
 
 ## Bloodhound
