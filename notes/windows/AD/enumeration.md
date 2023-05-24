@@ -15,6 +15,11 @@ net user /domain
 net groups /domain
 ```
 
+Add yourself to a group with:
+```
+net group "${GROUP}" ${USER} /add /domain
+```
+
 or the password policy for the domain: `net accounts /domain`
 
 
@@ -72,9 +77,10 @@ A good flag to use is `-Properties` with these, which takes a comma-separated li
 
 Examples of commands:
 
-* `Get-NetUser ${USER_NAME}`
+* `Get-NetUser ${USER_NAME}` (can be used with the flag -SPN to find service principals (service accounts)).
 * `Get-NetGroup ${GROUP}`
 * `Get-NetComputer`
+* `Get-NetComputer | Select name,operatingsystem,operatingsystemversion`
 * `Find-LocalAdminAccess` (Finds computers in the domain in which current user is local admin).
 * `Get-NetSession -ComputerName ${COMPUTER_NAME} -Verbose` (`-Verbose` to let us know if we simply don't have privileges to make the call).
 
@@ -85,6 +91,29 @@ PSLoggedOn.exe \\${COMPUTER_NAME}
 ```
 Just keep in mind that a blank output here can also just mean that the pre-reqs for the tool are simply not met, as it uses Remote Registry,
 which has been turned off by default since Windows 8.
+
+##### ACLs and ACE Querying with PowerView
+
+Interesting Acces Control Entries to look for:
+```
+GenericAll: Full permissions on object
+GenericWrite: Edit certain attributes on the object
+WriteOwner: Change ownership of the object
+WriteDACL: Edit ACE's applied to object
+AllExtendedRights: Change password, reset password, etc.
+ForceChangePassword: Password change for object
+Self (Self-Membership): Add ourselves to for example a group
+```
+
+We can do searches such as
+
+```
+Get-ObjectAcl -Identity "${GROUP}" | ? {$_.ActiveDirectoryRights -eq "GenericAll"} | select SecurityIdentifier | ForEach-Object -Process {Convert-SidToName $_.SecurityIdentifier}
+```
+(Requires specific version of PowerView.ps1).
+
+This gets everyone with the `GenericAll` permission on the group `$GROUP`.
+
 
 
 ## Bloodhound
