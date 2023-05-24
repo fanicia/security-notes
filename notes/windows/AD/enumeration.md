@@ -121,3 +121,23 @@ This gets everyone with the `GenericAll` permission on the group `$GROUP`.
 [Bloodhound](https://github.com/BloodHoundAD/BloodHound) with Sharphound can also be used for a graph overview of the domain.
 It has the drawback of being quite noisy though.
 
+
+Transfer SharpHound.ps1 to the target, import it and run:
+
+```
+Invoke-BloodHound -CollectionMethod All -OutputDirectory ${OUT_DIR} -OutputPrefix "$DOMAIN_NAME"
+```
+
+Take the resulting zip and dump it into bloodhound.
+To run bloodhound do: 
+
+```
+sudo neo4j start
+```
+and in another terminal:
+
+```
+bloodhound --no-sandbox
+```
+
+
