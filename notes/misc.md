@@ -38,3 +38,11 @@ This can look something like:
 
 Where `-l ws2_32` tells `mingw32-gcc` to include the `ws2_32` DLL in the final executable with static linking. 
 
+
+## Inline for loop
+We want to execute some command for all machines in the file machines.txt. This can be done like so:
+```
+for machine in $(cat machines.txt); do; crackmapexec smb $machine ...; done;
+```
+(note, this is just an example, as crackmapexec in fact supports jut getting the machine IPs from a machines.txt file natively).
+

@@ -14,13 +14,18 @@ net user /domain
 ```
 net groups /domain
 ```
+or the password policy for the domain: `net accounts /domain`
 
 Add yourself to a group with:
 ```
 net group "${GROUP}" ${USER} /add /domain
 ```
 
-or the password policy for the domain: `net accounts /domain`
+Change password of `$USER`:
+```
+net user ${USER} Password123! /domain
+```
+
 
 
 Has to be done from a domain-joined machine though, and it does not necessarily show the full output.

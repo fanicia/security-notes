@@ -16,6 +16,8 @@ Note that there's a specific ruleset made for rockyou.txt at:
 /usr/share/hashcat/rules/rockyou-30000.rule
 ```
 
+and a lot of other useful ones in `/usr/share/hashcat/rules`, such as best64.rule.
+
 ## Hash identifiers
 
 you can use `hashid` or `hash-identifier` to identify a hash.
