@@ -50,3 +50,11 @@ grep equivalent for cmd: `findstr`
 
 remove a file with force: `del /f`
 
+
+
+## Access shared drives
+
+Assuming there is a shared drive on `${COMPUTER_NAME}\shared`, and we have a powershell prompt with access to this shared drive,
+we can just do eg `ls ${COMPUTER_NAME}\shared` and other cli commands.
+
+This also works if we have loaded a TGS that grants the access.
