@@ -11,6 +11,10 @@ crackmapexec smb $RHOST -u ${USERS_FILE} -p '${PASSWORD}' -d ${DOMAIN} --continu
 ```
 Available protocols are: `ssh,mssql,winrm,smb,ldap,rdp,ftp`.
 
+
+for smb, consider following up with found credentials and `--shares`
+
+
 ## Impacket
 
 ### AS-REP roasting

@@ -43,6 +43,13 @@ example of recursive smbget:
 `smbget -R smb://${RHOST}:${PORT}/${DIRECTORY} -U ${USER}`
 
 
+or of you have found a set of credentials for SMB, you can do:
+
+```
+smbclient -p ${PORT} //$RHOST/${SHARE} -U ${USER} --password=${PASSWORD}
+```
+Standard port is 445
+
 Most basic gobuster command:
 `gobuster dir -u  $RHOST -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt`
 

