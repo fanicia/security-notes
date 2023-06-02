@@ -1,5 +1,19 @@
 # Wordpress
 
+
+## Enumeration
+
+use wpscan to scan for vulnerable plugins:
+
+```
+wpscan --url $RHOST --enumerate p,u,t --plugins-detection aggressive
+```
+
+use `-o filename.txt` to output to a file.
+
+to enumerate all plugins use `-ap` (will take a long time with `--plugins-detection aggressive`).
+
+
 ## Admin Dashboard
 
 Once you gain access to the admin dashboard, you can get RCE by editing the 404 template with a php reverse shell.
