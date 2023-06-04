@@ -7,6 +7,7 @@ go [here](https://github.com/jpillora/chisel/releases) for the appropriate relea
 
 
 Chisel makes it possible to do HTTP tunneling encrypted such that deep packet inspection won't be able to look into the details of the traffic.
+
 We run a chisel server on `${ATTACKER_IP}` which allows us to connect back from an owned machine:
 
 ```
@@ -35,6 +36,6 @@ socks5 127.0.0.1 1080
 ```
 
 ```
-proxychains4 -f proxychains4.conf ssh ${USER}@${OWNED_IP1}
+proxychains4 -f proxychains4.conf ${SOME_COMMAND} 
 ```
 

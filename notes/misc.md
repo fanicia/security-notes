@@ -40,9 +40,20 @@ Where `-l ws2_32` tells `mingw32-gcc` to include the `ws2_32` DLL in the final e
 
 
 ## Inline for loop
+
 We want to execute some command for all machines in the file machines.txt. This can be done like so:
 ```
 for machine in $(cat machines.txt); do; crackmapexec smb $machine ...; done;
 ```
 (note, this is just an example, as crackmapexec in fact supports jut getting the machine IPs from a machines.txt file natively).
 
+
+## File transfer from Windows to Attack box
+
+If you find yourself on a windows shell and want to transfer files from the target to the attack box,
+you can start an SMB server on the attackbox:
+
+```
+impacket-smbserver SHARE $(pwd) -smb2support -user ${SOME_USERNAME} -password ${SOME_PW}
+```
+(Note that this makes a public server. Only use this in CTF scenarios in private networks).

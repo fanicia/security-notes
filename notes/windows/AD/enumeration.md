@@ -130,7 +130,7 @@ It has the drawback of being quite noisy though.
 Transfer SharpHound.ps1 to the target, import it and run:
 
 ```
-Invoke-BloodHound -CollectionMethod All -OutputDirectory ${OUT_DIR} -OutputPrefix "$DOMAIN_NAME"
+Invoke-BloodHound -CollectionMethod All -OutputDirectory . -OutputPrefix "$DOMAIN_NAME"
 ```
 
 Take the resulting zip and dump it into bloodhound.
@@ -143,6 +143,18 @@ and in another terminal:
 
 ```
 bloodhound --no-sandbox
+```
+
+### Useful Bloodhound Raw Queries
+
+```
+MATCH (m:Computer) RETURN m
+```
+```
+MATCH (m:User) RETURN m
+```
+```
+MATCH p = (c:Computer)-[:HasSession]->(m:User) RETURN p
 ```
 
 
