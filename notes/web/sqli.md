@@ -6,6 +6,9 @@ On Kali, to connect to an MSSQL database on a Windows machine, do:
 impacket-mssqlclient ${USER}:${PW}@${RHOST} -windows-auth
 ```
 
+Start by giving it simple queries that tell you something about what query the web application is attempting to make.
+Then, use [these payloads](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/PostgreSQL%20Injection.md) for inspiration on enumeration.
+
 ## Error based
 
 When logging into an application, you might see errors from the underlying databases.
@@ -17,9 +20,21 @@ admin' OR 1=1 -- //
 ```
 
 This is good against queries such as `SELECT * from users where user=$user and pw=$pw`.
-The early `' OR 1=1 -- //` is an attempt at ending the query early by outcommenting the `and...` statement and instead evaluating `1=1`
+The early `' OR 1=1 -- //` is an attempt at ending the query early by outcommenting the `and...` statement and instead evaluating `1=1`.
 
-## In-band Union based injection
+
+A good trick for error based injection, once you have a simple query, is to  `CAST` the value you want to a wrong type:
+
+```
+' Union SELECT null, CAST(CURRENT_USER as int), null, null, null, null from user
+```
+
+so that the value shows up in the error on the web page.
+
+*Note* the `null,` as the first part of the select-statement.
+doing a `CAST` directly after `SELECT` didn't work with postgresql.
+
+### In-band Union based injection
 
 When the results are shown on the page, it can be good to attempt a Union based attack.
 This often happens when the underlying database runs a query like

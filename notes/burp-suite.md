@@ -4,6 +4,11 @@ A lot could be said about Burp.
 Most of my learning on Burp happened before starting these notes, though.
 So this will mostly contain small snippits.
 
+## Misc.
+
+In repeater, use CRTL+u to  encode the highlighted text.
+CRTL+SHIFT+u to decode.
+
 ## Redirect cURL to Burp
 
 say you have been fuzzing an API at `/users/v1` with cURL and you would like to continue the work in burp.
