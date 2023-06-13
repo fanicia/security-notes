@@ -112,3 +112,7 @@ If we have exploited IIS, it is not uncommon to have a shell running as
 
 Which all have SeImpersonatePrivilege.
 
+
+Note that with SeImpersonatePrivilege it can be good to try out multiple of the "Potato" exploits as they might not all work.
+[GodPotato](https://github.com/BeichenDream/GodPotato/releases/tag/V1.20) seems to generally be pretty successful with creating a reverse shell.
+
