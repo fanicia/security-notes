@@ -39,6 +39,8 @@ net view \\dc01 /all
 
 ## Enum in Powershell
 
+Remember to use tools such as crackmapexec to check if a given user's credentials can be used for smb/rdp access to different machines!
+
 ### Manual Powershell enum
 
 See [AD-Querier.ps1](./../../../payloads-n-scripts/scripts/AD-Querier.ps1).
@@ -58,6 +60,13 @@ $group = LDAPSearch -Query "(objectCategory=computers)"
 ````powershell
 $group = LDAPSearch -Query "(distinguishedname=${DISTINGUISHED_NAME_OF_OBJECT})"
 `````
+
+
+Manual lookup of hostname with:
+
+```
+Resolve-DnsName -Name ${IP}
+```
 
 ### Automation tools
 

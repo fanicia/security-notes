@@ -70,6 +70,12 @@ To get history from PSReadline:
 (Get-PSReadlineOption).HistorySavePath
 ```
 
+usually stored in:
+
+```
+C:\Users\${USER}\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+```
+
 ## Enum and much else: PowerSploit
 
 

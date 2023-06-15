@@ -44,6 +44,13 @@ Enter Session 1
 ```
 
 
+Or from your kali machine:
+
+```
+evil-winrm -i ${RHOST} -u ${USER} -p "${PASSWORD}" 
+```
+
+
 ## PsExec
 
 For this to work, ADMIN$ needs to be shared, and the authenticating user needs to be member of the local admin group.
