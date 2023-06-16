@@ -40,7 +40,7 @@ $secureString = ConvertTo-SecureString $password -AsPlaintext -Force;
 $credential = New-Object System.Management.Automation.PSCredential $username, $secureString;
 
 New-PSSession -ComputerName ${RHOST} -Credential $credential
-Enter Session 1
+Enter-PSSession 1
 ```
 
 

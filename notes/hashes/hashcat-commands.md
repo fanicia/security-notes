@@ -42,6 +42,12 @@ Copy `{NTLM_HASH}` into a file `hash.txt` and:
 hashcat -m 1000 hash.txt /usr/share/wordlists/rockyou.txt
 ```
 
+or 
+
+```
+sudo john -format=NT hash.txt -w=/usr/share/wordlists/rockyou.txt
+```
+
 ## NTLMv2
 
 Copy the full hashline (everything, including username) into a file with `echo -n "..." > hash.txt` and then:
