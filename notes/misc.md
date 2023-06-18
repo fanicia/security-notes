@@ -56,4 +56,5 @@ you can start an SMB server on the attackbox:
 ```
 impacket-smbserver SHARE $(pwd) -smb2support -user ${SOME_USERNAME} -password ${SOME_PW}
 ```
-(Note that this makes a public server. Only use this in CTF scenarios in private networks).
+(Note that this makes a public server. Only without setting user/password in CTF scenarios in private networks).
+

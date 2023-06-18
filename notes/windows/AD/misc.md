@@ -1,9 +1,11 @@
 # Active Directory
 
 
-RDP to connect to jumphost: `xfreerdp /u:${DOMAIN}\\${user} /p:${password} /cert:ignore /v:$RHOST`
+RDP to connect to jumphost: `xfreerdp /u:${DOMAIN}\\${user} /p:${password} /cert:ignore /v:$RHOST /smart-sizing`
 In order to add a shared drive with `xfreedrp`, use `/drive:tmp,/tmp`.
 Note that the shared drive can now be accessed programmatically by using the path `\\tsclient\tmp` on the Windows host.
+
+When pivoting with eg. chisel, it can be used with socks proxy by adding `/proxy:"socks5://127.0.0.1:1080"`.
 
 
 ## evil-winrm
