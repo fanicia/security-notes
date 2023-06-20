@@ -50,6 +50,14 @@ smbclient -p ${PORT} //$RHOST/${SHARE} -U ${USER} --password=${PASSWORD}
 ```
 Standard port is 445
 
+
+To communicate with a public share, do:
+```
+smbclient //$RHOST/${SHARE} -U Guest 
+```
+and then use empty password.
+
+
 Most basic gobuster command:
 `gobuster dir -u  $RHOST -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt`
 
