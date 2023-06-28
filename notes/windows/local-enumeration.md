@@ -10,6 +10,11 @@ whoami
 whoami /groups
 ```
 
+
+```
+whoami /priv
+```
+
 Groups such as Administrators, Backup Operators, Remote Desktop Users, and Remote Management Users can be noteworthy.
 
 ## Enum in Powershell
