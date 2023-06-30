@@ -26,6 +26,14 @@ Change password of `$USER`:
 net user ${USER} Password123! /domain
 ```
 
+```
+net user /add hackmin Password123
+```
+
+```
+net localgroup administrators hackmin /add
+```
+
 
 
 Has to be done from a domain-joined machine though, and it does not necessarily show the full output.
