@@ -93,6 +93,22 @@ schtasks /query /fo LIST /v > tasks.txt
 And then transfering the list to the attack box
 
 
+## Procmon
+
+Should you identify a windows service you are interested in analyzing with Procmon,
+transfer it to a Windows VM (including any .dlls in the same dir), install the service with:
+
+```
+sc.exe create ${SERVICE_NAME} binPath="${EXE_PATH}"
+```
+
+Now, transfer Procmon to the VM, start Procmon, set `Filter > Process Name > ${EXE_NAME.exe}`, add and apply.
+Consider removing the registry entries event view too as they tend to clutter the overview.
+
+Now, do `sc.exe start ${SERVICE_NAME}` and you can analyze the events.
+Hopefully, a missing dll will show up for you to use.
+
+
 ## Misc Exploits
 
 When looking at privilege escalation, the privilege `SeImpersonatePrivilege` can be interesting, as it allows users to run commands as another user.
