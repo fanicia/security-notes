@@ -85,5 +85,5 @@ sudo tcpdump -i lo -A | grep "pass"
 
 We can use `unix-privesc-check` located in `/usr/bin/unix-privesc-check`, or linpeas on `/usr/share/peass/linpeas`.
 
-
+to get an overview over running processes, get pspy onto the machine and run it.
 
