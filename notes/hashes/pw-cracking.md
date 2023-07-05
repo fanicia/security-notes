@@ -141,4 +141,7 @@ crunch 10 10 -t test%%%%%% > testworldlist.txt
 ```
 Which will print `test000001` through `test999999`.
 
+## Online Resource
+
+If everything else fails for a hash, it can be worth it trying to see if [this site](https://hashes.com/en/decrypt/hash) can crack the hash.
 
