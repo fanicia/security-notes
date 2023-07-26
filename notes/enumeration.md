@@ -37,6 +37,8 @@ Useful early enumeration commands:
 * `nikto -host ${RHOST}`
 * `smbmap -H ${RHOST}`
 
+### SMB enumeration
+
 If you want `smbmap` with a host-file, do `--host-file hosts.txt`
 
 example of recursive smbget:
@@ -56,6 +58,12 @@ To communicate with a public share, do:
 smbclient //$RHOST/${SHARE} -U Guest 
 ```
 and then use empty password.
+
+Assuming you have credentials from a domain user, you can check what shares are available:
+
+```
+crackmapexec smb $RHOST -u $USER -p $PASSWORD --share
+```
 
 
 Most basic gobuster command:
