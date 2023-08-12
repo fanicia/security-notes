@@ -7,6 +7,18 @@
 (also installable with `sudo apt install peass`, resulting in binaries found with `winpeas --help` and `linpeas --help` )
 
 
+If WinPeas shows the lines:
+
+```
+https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation#alwaysinstallelevated
+    AlwaysInstallElevated set to 1 in HKLM!
+    AlwaysInstallElevated set to 1 in HKCU!
+```
+
+we can install msis as authority\system.
+Generate an msi reverse shell with `msfvenom`, and we own the machine.
+
+
 ## PowerUp
 
 [PowerUp.ps1](https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Privesc/PowerUp.ps1)
