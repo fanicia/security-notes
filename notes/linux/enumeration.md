@@ -20,7 +20,7 @@ sudo -l
 For info on the system:
 
 ```
-cat /etc/issue, cat /etc/*-release, uname -r, arch 
+cat /etc/issue; cat /etc/*-release; uname -r; arch 
 ```
 
 For displaying the route table (depending on distro):
@@ -53,6 +53,12 @@ Dirs we can write to:
 
 ```
 find / -writeable -type d 2>/dev/null
+```
+
+Search for interesting files:
+
+```
+find / -type f -name "*.txt" -o -name "*.txt" -o -name "*.kdbx" -o -name "*.zip" 2>/dev/null
 ```
 
 Loaded kernel modules can be found with:
