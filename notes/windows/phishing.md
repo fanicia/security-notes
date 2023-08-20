@@ -32,7 +32,7 @@ make a link-file with the powercat payload.
 Setup a `wsgidav` listener (make the root dir beforehand):
 
 ```
-~/.local/bin/wsgidav --host=0.0.0.0 --port=80 --auth=anonymous --root ./webdav/
+wsgidav --host=0.0.0.0 --port=80 --auth=anonymous --root ./webdav/
 ```
 
 place the .link file in `./webdav` and write a body and header to social engineer the target to clicking the .link file in the `./webdav` folder.
