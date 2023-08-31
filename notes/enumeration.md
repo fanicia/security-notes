@@ -37,6 +37,16 @@ Useful early enumeration commands:
 * `nikto -host ${RHOST}`
 * `smbmap -H ${RHOST}`
 
+
+If you see a port that none of the normal enumeration tools can identify,
+it can be beneficial to do a simple
+
+```
+echo "version" | nc $RHOST $PORT 
+```
+
+The service might just answer something useful back.
+
 ### SMB enumeration
 
 If you want `smbmap` with a host-file, do `--host-file hosts.txt`
