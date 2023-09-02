@@ -62,10 +62,35 @@ Get-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Un
 ```
 Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" | select displayname
 ```
+
 Finally, to get running processes:
 ```
 Get-Process
 ```
+
+#### PuTTY and SSH 
+
+Is PuTTY / OpenSSH Found on the machine? Look for session credentials.
+For PuTTY:
+```
+reg query "HKCU\Software\SimonTatham\PuTTY\Sessions" /s
+```
+
+
+For  PuTTY SSH keys:
+```
+reg query HKCU\Software\SimonTatham\PuTTY\SshHostKeys\
+```
+
+Also, check for SSH keys in the registry:
+
+```
+reg query HKEY_CURRENT_USER\Software\OpenSSH\Agent\Keys
+```
+
+More info [here](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation)
+
+
 ## History
 
 Powershell history: `Get-History`
