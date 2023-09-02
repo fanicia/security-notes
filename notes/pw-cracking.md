@@ -113,4 +113,14 @@ ssh2john id_rsa
 ```
 Which, again, will prefix with the filename `id_rsa:` which should be removed before giving it to hashcat.
 
-We can 
+If you find a .zip file protected by a password, you can extract the hash of the pw for the individual files  with:
+```
+zip2john file.zip
+```
+
+This produces a long list of files with the zip-hash inbetween the `:` characters.
+Copy this into `zip.hash` and do:
+
+```
+john -w=/usr/share/wordlists/rockyou.txt --format=zip
+```
