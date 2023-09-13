@@ -98,6 +98,9 @@ This will cat the contents of the first file the `Get-ChildItem` cmdlet outputs.
 
 ## Open powershell terminal with other credentials:
 
+Note that this requires a full powershell sessions through RDP.
+It does not work in a reverse shell.
+
 With admin privileges:
 ```
 Start-Process "powershell" -Credential "Administrat0r" -ArgumentList "Start-Process powershell -Verb runAs" -WorkingDirectory 'C:\Users'

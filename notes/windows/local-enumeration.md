@@ -106,6 +106,22 @@ usually stored in:
 C:\Users\${USER}\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
 ```
 
+## AutoLogon Credentials
+
+Should show up using winpeas, but if you want to manually enumerate it, try:
+
+
+```
+REG QUERY "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\WinLogon" /v DefaultPassword
+```
+
+or
+
+```
+REG QUERY "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\WinLogon" /v DefaultPassword /reg:64
+```
+
+
 ## Enum and much else: PowerSploit
 
 
