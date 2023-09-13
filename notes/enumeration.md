@@ -87,6 +87,44 @@ if you need it to look for words in a pattern, eg `{word}/v1` and `{word}/v2`, y
 ```
 to a patterns.txt file and then add the flag `-p patterns.txt` to the gobuster command.
 
+
+### SNMP Enumeration
+
+Good resource on SNMP Enumeration in general [here](https://book.hacktricks.xyz/network-services-pentesting/pentesting-snmp).
+Good resource on extending the usual commands [here](https://book.hacktricks.xyz/network-services-pentesting/pentesting-snmp/snmp-rce).
+
+
+The quick version is that `sudo env "PATH=$PATH" autorecon $RHOST` will do most of the enumeration for you.
+To do the enumeraton with snmpwalk do:
+
+```
+snmpwalk 192.168.217.149:161 -c public -v 2c 1.3.6.1.2.1.6.13.1.3
+```
+where the OID will define what you are querying. (note that the community is probably e.g. `manager, public, private`)
+Standard OIDs are:
+
+```
+1.3.6.1.2.1.25.1.6.0 System Processes
+1.3.6.1.2.1.25.4.2.1.2 Running Programs
+1.3.6.1.2.1.25.4.2.1.4 Processes Path
+1.3.6.1.2.1.25.2.3.1.4 Storage Units
+1.3.6.1.2.1.25.6.3.1.2 Software Name
+1.3.6.1.4.1.77.1.2.25 User Accounts
+1.3.6.1.2.1.6.13.1.3 TCP Local Ports
+```
+
+the tool `onesixtyone` will attempt to bruteforce the community for you (this is also run by autorecon).
+Also, the version `-v ` is probably either `-v1`, `-v 2c` or `-v 3`.
+
+Note that the network administrator may have extended the functionality with custom commands.
+Read this with:
+
+```
+snmpwalk -v2c -c public $RHOST NET-SNMP-EXTEND-MIB::nsExtendObjects
+```
+
+(again note the version and community).
+
 ## Powershell
 ```
 1..1024 | % {echo ((New-Object Net.Sockets.TcpClient).Connect("$RHOST", $_)) " $_/tcp open"} 2>$null
