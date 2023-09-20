@@ -52,6 +52,9 @@ netstat -ano
 ```
 If e.g. port 3389 (RDP) is shown in this output, other users are currently connected to the system.
 
+Also note that it can be used for debugging potential firewall issues.
+Often ports used for listening are also allowed for egress.
+
 Check installed software on the machine:
 32-bit:
 ```

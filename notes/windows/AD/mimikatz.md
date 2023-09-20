@@ -71,6 +71,7 @@ Dump with either:
 ```
 lsadump::sam
 lsadump::lsa [/inject | /patch]
+lsadump::cache
 ```
 
 ## Transfering mimikatz files from http server in Powershell

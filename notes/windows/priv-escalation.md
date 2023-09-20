@@ -31,6 +31,11 @@ Now, we can run the functions defined in the script, such as `Get-ModifiableServ
 Note that `Get-UnquotedService` will give you all the information you need, including the same results as enumerating which paths we have access to with `icacls $Path`.
 It will give you the ModifiablePaths where we can dump our .exe for the service to find.
 
+
+## EventViewer UAC Bypass
+
+If PowerUp or winpeas tells you there's an escalation route through EventViewer UAC Bypass, have a look at [this](https://github.com/CsEnox/EventViewer-UACBypass).
+
 ## Windows services
 
 ### Hijacking the binary
