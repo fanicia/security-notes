@@ -16,6 +16,18 @@ where you choose the image as closely to your target as possible.
 Then, the exploit can be compiled with make/gcc on a machine similar to your target.
 
 
+Good stuff to apt install on ubuntu:
+
+```
+apt install gcc make sudo git
+sudo apt install g++-multilib
+apt install libmnl-dev
+apt install libnftnl-dev
+```
+
+For Ubuntu 20.04, consider simply permanently running a compiler container with this stuff prepared.
+
+
 
 
 ## XenSpawn
