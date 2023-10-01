@@ -87,6 +87,18 @@ sudo tcpdump -i lo -A | grep "pass"
 `-i` chooses network interface, and `-A` prints packets in ASCII.
 
 
+## Interesting Files
+
+always check for interesting things in `/opt`.
+check for mail in `/var/mail`.
+
+## Processes
+
+When running linpeas, note which processes are running as root (e.g. a mysql server or something).
+Maybe we can take one of them over? 
+
+
+
 ## Automated techniques
 
 We can use `unix-privesc-check` located in `/usr/bin/unix-privesc-check`, or linpeas on `/usr/share/peass/linpeas`.

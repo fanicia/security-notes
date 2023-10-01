@@ -20,7 +20,7 @@ Good stuff to apt install on ubuntu:
 
 ```
 apt install gcc make sudo git
-sudo apt install g++-multilib
+apt install g++-multilib
 apt install libmnl-dev
 apt install libnftnl-dev
 ```
