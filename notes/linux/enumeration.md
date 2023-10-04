@@ -89,8 +89,10 @@ sudo tcpdump -i lo -A | grep "pass"
 
 ## Interesting Files
 
-always check for interesting things in `/opt`.
-check for mail in `/var/mail`.
+* Always check for interesting things in `/opt`.
+* Check for mail in `/var/mail`.
+* Check for any config files in `/var/www/html` or `/var/www` if you got access via a web server. 
+
 
 ## Processes
 

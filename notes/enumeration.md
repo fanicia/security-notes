@@ -125,6 +125,31 @@ snmpwalk -v2c -c public $RHOST NET-SNMP-EXTEND-MIB::nsExtendObjects
 
 (again note the version and community).
 
+
+### WebDav
+
+Sometimes, a nikto scan will reveal WebDav to be enabled on a webserver.
+This is an extension to HTTP that allows us to interact with the webserver similarly to FTP.
+
+If this is the case, we can test what we can upload to the server with (leave out the `[-auth]` section if you don't have valid creds. might still work):
+
+```
+davtest [-auth user:password] -sendbd auto -url http://$RHOST
+```
+This will tell us which file extensions we can upload to the server.
+
+Assuming .apsx is an option, we can now generate an .aspx shell with msfvenom, and upload it with:
+
+```
+cadaver $RHOST
+```
+Once you are logged in, use `put shell.aspx` to upload the file.
+
+Now, you trigger it by going to e.g. `http://$RHOST/shell.aspx`.
+
+
+
+
 ## Powershell
 ```
 1..1024 | % {echo ((New-Object Net.Sockets.TcpClient).Connect("$RHOST", $_)) " $_/tcp open"} 2>$null

