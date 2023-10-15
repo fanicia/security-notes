@@ -178,6 +178,9 @@ Transfer SharpHound.ps1 to the target, import it and run:
 Invoke-BloodHound -CollectionMethod All -OutputDirectory . -OutputPrefix "$DOMAIN_NAME"
 ```
 
+Note that I have had issues running this from an evil-winrm shell.
+If you experience this, get a shell from powercat (or similar) and run it through there.
+
 Take the resulting zip and dump it into bloodhound.
 To run bloodhound do: 
 
