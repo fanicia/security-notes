@@ -109,6 +109,16 @@ usually stored in:
 C:\Users\${USER}\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
 ```
 
+
+## Environment Variables
+
+This is also included in winpeas, but you can do:
+
+```
+Get-ChildItem -Path Env:
+```
+To see env vars.
+
 ## AutoLogon Credentials
 
 Should show up using winpeas, but if you want to manually enumerate it, try:

