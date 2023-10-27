@@ -19,10 +19,7 @@ Then, the exploit can be compiled with make/gcc on a machine similar to your tar
 Good stuff to apt install on ubuntu:
 
 ```
-apt install gcc make sudo git
-apt install g++-multilib
-apt install libmnl-dev
-apt install libnftnl-dev
+apt install wget gcc make sudo git g++-multilib libmnl-dev libnftnl-dev -y
 ```
 
 For Ubuntu 20.04, consider simply permanently running a compiler container with this stuff prepared.
