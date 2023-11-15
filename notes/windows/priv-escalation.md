@@ -121,6 +121,7 @@ Consider removing the registry entries event view too as they tend to clutter th
 
 Now, do `sc.exe start ${SERVICE_NAME}` and you can analyze the events.
 Hopefully, a missing dll will show up for you to use.
+Under the RESULT column, look for a dll with "NAME NOT FOUND".
 
 
 ## Misc Exploits - SeImpersonatePrivilege

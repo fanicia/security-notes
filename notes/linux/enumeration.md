@@ -58,7 +58,7 @@ find / -writeable -type d 2>/dev/null
 Search for interesting files:
 
 ```
-find / -type f -name "*.txt" -o -name "*.txt" -o -name "*.kdbx" -o -name "*.zip" 2>/dev/null
+find / -type f -name -o -name "*.txt" -o -name "*.kdbx" -o -name "*.zip" 2>/dev/null
 ```
 
 Loaded kernel modules can be found with:
