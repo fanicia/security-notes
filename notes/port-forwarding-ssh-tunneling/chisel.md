@@ -9,6 +9,12 @@ Chisel makes it possible to do HTTP tunneling encrypted such that deep packet in
 
 Note that you can state multiple forwarding statements in a single `chisel client ...` command.
 
+Also keep in mind that chisel can be run in a non-blocking manner in powershell by doing:
+
+```
+Start-Process -NoNewWindow ./chisel -Args "client ..."
+```
+
 
 ## Dynamic Port Forwarding
 
