@@ -7,6 +7,8 @@ Note that the shared drive can now be accessed programmatically by using the pat
 
 When pivoting with eg. chisel, it can be used with socks proxy by adding `/proxy:"socks5://127.0.0.1:1080"`.
 
+Also note that if `xfreerdp` is giving you issues, you can also use `rdesktop`.
+
 
 ## evil-winrm
 
