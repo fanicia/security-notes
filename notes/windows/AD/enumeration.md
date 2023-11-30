@@ -144,7 +144,10 @@ If autorecon reveals the AD being setup such that you can enumerate ldap without
 ldapsearch -x -H ldap://${RHOST}  -b "DC=${DOMAIN_NAME},DC=${DOMAIN_TLD}"
 ```
 
+
 There have been boxes where doing this will reveal a plaintext password (e.g. in the description of a user).
+
+Remember to use e.g. `grep -i pass` and `grep -i pw` on the results of these searches (`-i` for ignore case).
 
 If you have valid credentials, enumeration can be done with that as well:
 

